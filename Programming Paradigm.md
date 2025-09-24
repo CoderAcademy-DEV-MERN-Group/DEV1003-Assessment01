@@ -7,13 +7,18 @@ At this stage of our application's development we are planning to use a hybrid a
 - **Backend (Node.js, Express, Mongoose):** Object-Oriented Programming
 - **Frontend (React):** Functional Programming with Hooks
 
+The backend will define data models (e.g `User`, `Movie`, `Rating`, `Friendship`) using OOP principles to ensure validation and sanitisation, reusability, and maintainability. The frontend will be written with React functional components, where UI elements like **ReelCards**, **Popcorn Meter** and **Leaderboard Tables** are built as discrete functions, with states managed through hooks.
+
+Ideally, custom hooks will be created to interact with data from the database, and render different UI based on conditional logic and user input. This functional programming will complement our OOP backend system, providing a strongly interactive UI, and enabling us to keep our business logic pure and simple.
+
 For the purposes of this assessment, we will provide a thorough explanation of Object-Oriented Programming (OOP) as it is the foundation of our data models and application logic.
 
 ---
 
 ## Object Oriented Programming
 
-Object Oriented Programming is a paradigm which structures code into objects rather than functions and logic. An object or class (these terms are often interchangable) bundles related data (attributes) and behaviours (methods) into modular units, aligning with real world entities and their relationships. OOP promotes code organisation, reusability and maintainability through abstraction, encapsulation, inheritance and polymorphism (more on those terms below!)
+Object Oriented Programming is a paradigm which structures code into objects (or **classes**) that bundle related data (attributes) and behaviours (methods) into modular units, aligning with our application entities, such as a `User` object that stores profile data and methods for authentication, or a `Movie` object which bundles metadata, critical ratings, and relationships to genres and directors.  
+OOP promotes modular code organisation, reusability and maintainability through abstraction, encapsulation, inheritance and polymorphism (more on those terms and how they apply to _The Century Screening Room_ below!)
 
 ---
 
@@ -88,6 +93,11 @@ myCoffee.makeCoffee(); // All complexity hidden!
 
 Abstraction is the design pattern, not the end result. Meaning that the class design _is_ the abstraction that hides complexity from the user.
 
+In our project:
+
+- The backend of our application will expose only high level methods (EG. `registerUser()` or `loginUser()`) while hiding security measures such as password hashing, validation or session (auth-token) logic.
+- The frontend of our application will trigger a `markAsWatched()` call, while the backend handles updating of associated data (EG. `User` `ReelProgress` records are recalculated, and the Leaderboard is adjusted)
+
 ---
 
 ### Encapsulation
@@ -117,25 +127,28 @@ console.log(user.password); // Anyone can read it!
 **With Encapsulation:**
 
 ```js
-class User {
-  #passwordHash; // Private field
+const UserSchema = new mongoose.Schema({
+  username: { type: String, required: true, unique: true },
+  email:    { type: String, required: true, unique: true },
+  passwordHash: { type: String, required: true }
+});
 
-  setPassword(plainTextPassword) {
-    this.#passwordHash = bcrypt.hash(plainTextPassword);
-  }
+// Encapsulation through schema methods
+UserSchema.methods.setPassword = async function (plainTextPassword) {
+  this.passwordHash = await bcrypt.hash(plainTextPassword, 12); // 12 salt rounds
+};
 
-  validatePassword(attempt) {
-    return bcrypt.compare(attempt, this.#passwordHash);
-  }
-}
-
-// Safe - password internally managed
-user.setPassword("plaintext123");
-user.validatePassword("guess"); // Returns true/false
-// user.#passwordHash → Error: private field inaccessible
+UserSchema.methods.validatePassword = async function (attempt) {
+  return await bcrypt.compare(attempt, this.passwordHash);
+};
 ```
 
-Encapsulation protects sensitive data through access and modification controls.
+Encapsulation bundles data and methods within classes or schemas, and protects sensitive data through access and modification controls.
+
+In our project:
+
+- The `User` model will encapsulate passwords by storing them as hashed versions, and exposing only safe high level methods (EG. `validatePassword()`)
+- Ratings are encapsulated within a `Rating` object, which ensures they are always linked with the related `User` and `Movie`.
 
 ---
 
@@ -195,7 +208,41 @@ console.log(myCat.age); // 7 (inherited from Animal)
 console.log(myCat.purr()); // "Purrr..." (Cat's own method)
 ```
 
-Inheritance eliminates the need for repeated code, as the parent-child relationship allows objects to inherit properties without needing to redefine them.
+Inheritance allows classes to share attributes, properties and methods from their parent class.
+
+In our project:
+
+- A base `User` class could provide attributes (`username`, `email`, `password`) while child classes like `Admin` or `StandardUser` add role specific methods (EG. `viewAll()` methods for admins to see bulk data, and `removeUser()` to ban users)
+- `List` objects (EG. _The Reel Canon_ vs _Custom Lists_) can inherit common behaviours such as adding/removing movies, with different scope (fixed canon list vs user-generated and controlled custom lists)
+
+Below is an example of Mongoose schema inheritance for `List` objects in _The Century Screening Room_:
+
+```js
+// Base schema for all lists
+const ListSchema = new mongoose.Schema({
+  name: { type: String, required: true },
+  movies: [{ type: mongoose.Types.ObjectId, ref: "Movie" }],
+  createdBy: { type: mongoose.Types.ObjectId, ref: "User" }
+}, { discriminatorKey: "listType", timestamps: true });
+
+// Base model
+const List = mongoose.model("List", ListSchema);
+
+// Inherited model: The Reel Canon (fixed)
+const ReelCanon = List.discriminator("ReelCanon",
+  new mongoose.Schema({
+    isLocked: { type: Boolean, default: true } // cannot be edited by users
+  })
+);
+
+// Inherited model: Custom List (user-generated)
+const CustomList = List.discriminator("CustomList",
+  new mongoose.Schema({
+    description: String,
+    isPublic: { type: Boolean, default: false }
+  })
+);
+```
 
 ---
 
@@ -237,10 +284,15 @@ const animals = [new Dog(), new Cat()];
 animals.forEach((animal) => console.log(animal.speak())); // Output: "Woof!" then "Meow!" - same method, different behavior
 ```
 
-Polymorphism ensures that your code is flexible, and extendible, so new animals can be added without changing existing logic.
+Polymorphism lets different classes implement the same methods but behave differently.
+
+In our project:
+
+- A `FormInput` React component can render differently depending on whehter it's a login field, a genre selector, or a friend search field, but all share a single interface
+- A `ReelCard` component in the Reel Canon can represent the same movie object in multiple states. For example, movie cards will have a **watched** and **unwatched** state, with a change in rendered display based on these states. Watched movies will provide users with glow effects and the movie poster, whilst unwatched movies will be rendered as cards with Title, Year and Genre details. Both will respond to `onClick` and `onHover`, but will behave differently depending on the **watched** or **unwatched** state.
 
 ---
 
 ## Conclusion
 
-Overall, OOP allows developers to create scalable, secure, and versatile applications through creating classes. Abstraction allows users to interface with methods simply, encapsulation ensures access to data related to objects is secure and controlled, inheritance allows code to stay DRY, and polymorphism allows developers to apply methods to multiple objects to ensure maintainable and scalable code.
+Combined with our functional React frontend, an OOP backend provides a robust scalable, secure, and versatile foundation. Abstraction allows users to interface with methods simply, encapsulation ensures access to data related to objects is secure and controlled, inheritance keeps code DRY through reuse, and polymorphism enables flexible methods which adapt as needed. Together, these Four Pillars will shape our backend design and ensure that our finished application is delivered to a high standard.
