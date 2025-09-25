@@ -114,14 +114,18 @@ classDiagram
         -String hashedPassword
         +resetPassword()
         +validatePassword()
-    }    class User {
+    }
+class User {
         +String username
         -String hashedPassword
         +String email
         +setPassword()
-    }    LoginPage --> User : calls validatePassword()
-    LoginPage --> User : calls resetPassword()    note for LoginPage "Encapsulation: hashedPassword, email and username are private.
-    Accessible only via resetPassword() and validatePassword()."    note for User "Encapsulation: validatePassword() or resetPassword() public methods allow
+    }
+LoginPage --> User : calls validatePassword()
+    LoginPage --> User : calls resetPassword()
+note for LoginPage "Encapsulation: hashedPassword, email and username are private.
+    Accessible only via resetPassword() and validatePassword()."
+note for User "Encapsulation: validatePassword() or resetPassword() public methods allow
     viewing username and email attributes, and setPassword() method access"
 ```
 
@@ -180,15 +184,20 @@ Please see the below diagram to illustrate the concept of inheritance:
 ```mermaid
 classDiagram
     Animal <|-- Dog
-    Animal <|-- Cat    Animal : +String name
-    Animal : +int age    class Dog{
-      +String breed
-      +bark()
-    }
-    class Cat{
-      +String breed
-      +purr()
-    }
+    Animal <|-- Cat    
+    
+    Animal : +String name
+    Animal : +int age    
+    
+class Dog{
+    +String breed
+    +bark()
+}
+    
+class Cat{
+    +String breed
+    +purr()
+}
 ```
 
 ![A diagram depicting inheritance of classes and their parent classes](./src/assets/Inheritance%20Diagram.png)
