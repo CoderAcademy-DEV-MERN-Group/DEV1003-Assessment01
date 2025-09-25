@@ -106,7 +106,26 @@ Encapsulation bundles data and methods which operate on the data within a single
 
 Please see the diagram below to illustrate this concept:
 
-!"[DIAGRAM HERE"]
+```mermaid
+classDiagram
+    class LoginPage {
+        -String username
+        -String email
+        -String hashedPassword
+        +resetPassword()
+        +validatePassword()
+    }    class User {
+        +String username
+        -String hashedPassword
+        +String email
+        +setPassword()
+    }    LoginPage --> User : calls validatePassword()
+    LoginPage --> User : calls resetPassword()    note for LoginPage "Encapsulation: hashedPassword, email and username are private.
+    Accessible only via resetPassword() and validatePassword()."    note for User "Encapsulation: validatePassword() or resetPassword() public methods allow
+    viewing username and email attributes, and setPassword() method access"
+```
+
+![An image depicting encapsulation of User password data](./src/assets/Encapsulation%20Diagram.png)
 
 An example of this is a user object which has a password as an attribute:
 
@@ -158,9 +177,23 @@ Inheritance is the passing of properties and methods from an existing _parent_ o
 
 Please see the below diagram to illustrate the concept of inheritance:
 
-![DIAGRAM HERE]
+```mermaid
+classDiagram
+    Animal <|-- Dog
+    Animal <|-- Cat    Animal : +String name
+    Animal : +int age    class Dog{
+      +String breed
+      +bark()
+    }
+    class Cat{
+      +String breed
+      +purr()
+    }
+```
 
-As an example, let's think use these objects: `Animal`, `Cat` and `Dog`.
+![A diagram depicting inheritance of classes and their parent classes](./src/assets/Inheritance%20Diagram.png)
+
+As an example, let's think use these classes: `Animal`, `Cat` and `Dog`.
 
 - `Animal` is a parent class, as both `Dog` and `Cat` are animals.
 - `Animal` has the properties: `name` and `age`
