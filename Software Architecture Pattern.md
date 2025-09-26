@@ -2,7 +2,7 @@
 
 ## Model-View-Controller
 
-Our MERN Stack project will be utilising a Model-View-Controller (MVC) architecture. **React** will be used for views, **Express** will be our controller, and **Mongoose** will handle our models and interact with our **MongoDB** database. By utilising the "separation of concerns" of the applications business logic and display, MVC architecture allows for parallel development, and more granular maintenence.
+Our MERN Stack project will be utilising a Model-View-Controller (MVC) architecture. **React** will be used for views, **Express** will be our controller, and **Mongoose** will handle our models and interact with our **MongoDB** database. By utilising the "separation of concerns" of the applications business logic and display, MVC architecture allows for parallel development, and more granular maintenance.
 
 An illustration of a general MVC flow is below:
 
@@ -35,7 +35,7 @@ sequenceDiagram
 
 The stack flow of our project is:
 
-- Node.js: Provides execeution of server-side JavaScript code
+- Node.js: Provides execution of server-side JavaScript code
 - Express.js: Runs on Node.js to handle routing and middleware (Controller)
 - Mongoose ODM: Interfaces with MongoDB to manage data models (Model)
 - React: Renders the user interface (View/Client layer)
@@ -74,17 +74,17 @@ graph LR
     style E fill: indigo
 ```
 
-We will break down MVC into its compenents in more detail, and how they're applied in our project below.
+We will break down MVC into its components in more detail, and how they're applied in our project below.
 
 ---
 
 ### Model
 
-The **Model** component of MVC, put simply, handles the data. Whichever database system is chosen in a project handles validation and sanitisation of any and all data associated with the aplication. In our case, using **Mongoose** to interact with a **MongoDB** noSQL database. Mongoose schemas and models will be used to create and validate object data, which will be accessed by the **Express** controller component, and passed to the **React** view component.
+The **Model** component of MVC, put simply, handles the data. Whichever database system is chosen in a project handles validation and sanitisation of any and all data associated with the application. In our case, using **Mongoose** to interact with a **MongoDB** noSQL database. Mongoose schemas and models will be used to create and validate object data, which will be accessed by the **Express** controller component, and passed to the **React** view component.
 
 ### View
 
-The **View** component of MVC is, drumroll, what the user views! The user interfaces with the application at the view level, and it presents data to the user. Our **React** frontend wil lrender interactive UI components (EG. Movie cards, user profiles, leaderboards.) The view will receive data from the controller and display it in a user-friendly way, whilst also capturing view layer interactions (EG. Listening to a `button` for a `click` event) and to trigger actions in the controller.
+The **View** component of MVC is, drumroll, what the user views! The user interfaces with the application at the view level, and it presents data to the user. Our **React** frontend will render interactive UI components (EG. Movie cards, user profiles, leaderboards.) The view will receive data from the controller and display it in a user-friendly way, whilst also capturing view layer interactions (EG. Listening to a `button` for a `click` event) and to trigger actions in the controller.
 
 ### Controller
 
