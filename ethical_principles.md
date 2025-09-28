@@ -4,6 +4,8 @@ In 1997, [this software engineering code of ethics](https://dl.acm.org/doi/10.11
 
 From the above code of ethics (henceforth CoE), as well as ACM's respected separately created [Code of Ethics and Professional Conduct](https://www.acm.org/code-of-ethics)[^4] (henceforth CoEPC), we will identify and explain how our planned project will adhere to some of the relevant codes/principles.
 
+---
+
 ## Approve Only Safe Software
 
 **CoE 1.03. Approve software only if they have a well-founded belief that it is safe, meets specifications, passes appropriate tests, and does not diminish quality of life, diminish privacy or harm the environment. The ultimate effect of the work should be to the public good:**
@@ -18,6 +20,8 @@ This principle is most relevant to our project regarding the handling of persona
   Generate JWT (JSON Web Token) for each user using the 'jsonwebtoken' library, after validating them on login, and use middleware to authenticate that the request header contains the valid JWT before allowing access to routes containing data unique to the user. In our project, this could be to access their personal information (such as registered email address), as well as other general features specific to the user (such as their personalized movie reviews)[^6]
 - **Testing Exposure of Sensitive Information:**
   Use the external library "Jest" to test routes, JWT generation and validation, and hashing and salting of passwords. Test to ensure that the returned passwords in headers are hashed and salted, and that users cannot access routes without correct authorization through relevant middleware.
+
+---
 
 ## Respect Creative Works
 
@@ -35,6 +39,8 @@ Our proposed project will revolve around movies, and the depiction of those movi
 - **Acknowledge Libraries:**
   In the project documentation, we will provide acknowledgement and credit to any external libraries used, as well as listing their licenses, versions and any modifications made. An example of this can be seen in the [DEPENDENCIES.md](https://github.com/truth-josstice/dev1001_assignment2/blob/main/DEPENDENCIES.md#custom-modified-libraries-used)[^10] documentation created by this team for our previous group project.
 
+---
+
 ## Consider the Needs of All
 
 **CoE 1.07. Consider issues of physical disabilities, allocation of resources, economic disadvantage and other factors that can diminish access to the benefits of software:**
@@ -44,6 +50,8 @@ Our project should strive to be inclusive for all people using it where possible
 - **Cater for Visually Impaired:**
   [The Virtual Screen Reader](https://www.npmjs.com/package/@guidepup/virtual-screen-reader)[^11] external library allows for tests to be written to test what screen readers will say when accessing the site. In combination with unit testing, writing semantic HTML, and adhering to the guiding principles of [this guide on building a screen reader friendly site](https://www.accessibility-developer-guide.com/knowledge/screen-readers/how-to-implement/)[^12], we can successfully build a site that caters to the visually impaired.
 - **Cater for Legacy Hardware and Browsers:** As developers, we are often fortunate to have relatively advanced and powerful hardware, using regularly updated browsers to view content, however it's important to note that many users will be using legacy hardware and browsers. Babel is a transpiler that takes our modern JavaScript code and outputs a set of files with browser compatible syntax, without effecting functionality. Although it can be used online, for our project it would be best installed by following the CLI installation instructions [found here](https://babeljs.io/setup#installation)[^13]. Additionally, the [TinyBench](https://www.npmjs.com/package/tinybench)[^13] package is a simple, lightweight and easy to use benchmarking package we can incorporate into our project to verify performance, referring to the [MDN WebDocs section on performance optimization](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Performance/JavaScript)[^14]. This will ensure our website can run with minimal performance overhead, improving compatibility with low performance hardware.
+
+---
 
 ## Respect Privacy
 
