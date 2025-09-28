@@ -45,6 +45,19 @@ Our project should strive to be inclusive for all people using it where possible
   [The Virtual Screen Reader](https://www.npmjs.com/package/@guidepup/virtual-screen-reader)[^11] external library allows for tests to be written to test what screen readers will say when accessing the site. In combination with unit testing, writing semantic HTML, and adhering to the guiding principles of [this guide on building a screen reader friendly site](https://www.accessibility-developer-guide.com/knowledge/screen-readers/how-to-implement/)[^12], we can successfully build a site that caters to the visually impaired.
 - **Cater for Legacy Hardware and Browsers:** As developers, we are often fortunate to have relatively advanced and powerful hardware, using regularly updated browsers to view content, however it's important to note that many users will be using legacy hardware and browsers. Babel is a transpiler that takes our modern JavaScript code and outputs a set of files with browser compatible syntax, without effecting functionality. Although it can be used online, for our project it would be best installed by following the CLI installation instructions [found here](https://babeljs.io/setup#installation)[^13]. Additionally, the [TinyBench](https://www.npmjs.com/package/tinybench)[^13] package is a simple, lightweight and easy to use benchmarking package we can incorporate into our project to verify performance, referring to the [MDN WebDocs section on performance optimization](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Performance/JavaScript)[^14]. This will ensure our website can run with minimal performance overhead, improving compatibility with low performance hardware.
 
+## Respect Privacy
+
+**CoEPC 1.6. Respect privacy:**
+
+Since our project will be collecting and storing some personal data (i.e. email addresses, passwords, friend lists, preferences etc.), we need to ensure we are storing and using this data legitimately, collecting the minimum amount of data needed, and staying informed of the rights and responsibilities of collecting personal data. The [Australian Privacy Principles](https://www.oaic.gov.au/privacy/australian-privacy-principles/australian-privacy-principles-quick-reference)[^15] provide a useful guide for how we can achieve that, and here are some of the ways our project will be adhering to them:
+
+- **Open and transparent management of personal information:**
+  Our project will include a privacy policy in its documentation, outlining the types of data collected and how its stored, how we will use it, how it can be accessed, and any other requirements [outlined here](https://www.oaic.gov.au/privacy/your-privacy-rights/your-personal-information/what-is-a-privacy-policy)[^16]. An example of a previously created privacy policy by our team [can be found here](https://github.com/truth-josstice/dev1001_assignment2?tab=readme-ov-file#privacy-policy)[^17].
+- **Security of personal information:**
+  As mentioned in our [Approve Only Safe Software](#approve-only-safe-software) section, the use of hashing and salting to secure passwords, JWT middleware to secure routes, and Jest testing to test exposure of sensitive information will all be used to maintain security of personal information.
+- **Allow Changing and Deletion of Data:**
+  To remain aligned with APP requirements, routes will be created to allow users to update or delete their personal information on the site, including deletion of their account.
+
 ## References
 
 [^1]: [Software Engineering Code of Ethics](https://dl.acm.org/doi/10.1145/265684.265699)
@@ -59,6 +72,8 @@ Our project should strive to be inclusive for all people using it where possible
 [^10]: [Blackjack of Truth & Josstice Dependencies - GitHub](https://github.com/truth-josstice/dev1001_assignment2/blob/main/DEPENDENCIES.md#custom-modified-libraries-used)
 [^11]: [Virtual Screen Reader - NPM](https://www.npmjs.com/package/@guidepup/virtual-screen-reader)
 [^12]: [Implement Screen Reader Friendly Websites - ACD](https://www.accessibility-developer-guide.com/knowledge/screen-readers/how-to-implement/)
-[^13]:
-    [TinyBench - NPM](https://www.npmjs.com/package/tinybench)
-    [14^]: [Performance Optimization - MDN WebDocs](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Performance/JavaScript)
+[^13]: [TinyBench - NPM](https://www.npmjs.com/package/tinybench)
+[^14]: [Performance Optimization - MDN WebDocs](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Performance/JavaScript)
+[^15]: [Quick Reference - Australian Privacy Principles](https://www.oaic.gov.au/privacy/australian-privacy-principles/australian-privacy-principles-quick-reference)
+[^16]: [What is a privacy policy? - APP](https://www.oaic.gov.au/privacy/your-privacy-rights/your-personal-information/what-is-a-privacy-policy)
+[^17]: [Blackjack of Truth & Josstice Privacy Policy - GitHub](https://github.com/truth-josstice/dev1001_assignment2?tab=readme-ov-file#privacy-policy)
