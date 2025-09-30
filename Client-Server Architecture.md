@@ -16,11 +16,11 @@ sequenceDiagram
   WS -->> User: HTTP Response with data files (HTML, CSS, JS)
 ```
 
-Our application uses a three-tiered client-server architecture model (DataForest, 2025)[^3]:
+Our application implements this pattern through a three-tiered client-server architecture model (DataForest, 2025)[^3]:
 
 - **Tier 1 (Presentation):** React is used for the client front-end framework
 - **Tier 2 (Application):** Express is used as the server for business logic and database manipulation
-- **Tier 3 (Data):** Mongoose and MongoDB act as database and validation layer
+- **Tier 3 (Data):** MongoDB is the database layer, with Mongoose providing validation and data modelling
 
 Below we will discuss the key features of the client-server architecture model, and how they will be implemented in our application.
 
@@ -32,7 +32,7 @@ Client-server communication, in general, occurs through the use of standardised 
 
 - `GET`: Retrieve data
 - `POST`: Create new resources
-- `PUT`: Updates the entirity of an existing resource
+- `PUT`: Updates the entirety of an existing resource
 - `PATCH`: Partially updates an existing record
 - `DELETE`: Remove resources
 
@@ -49,7 +49,7 @@ In our application:
 - Mongoose performs MongoDB database operations and manipulation as required by request type
 - Express sends a JSON response to the React frontend, which renders components and updates UI states
 
-Examples of HTTB verbs in our application:
+Examples of HTTP verbs in our application:
 
 ```js
 // GET - Fetch user's Reel Canon progress and movie data
@@ -74,13 +74,15 @@ User Action (Clicks drama genre filter) → React (GET /api/movies?genre=drama) 
 Back through chain:  
 (MongoDB (return drama movies) -> Mongoose (serialized movie data) -> Express (JSON response) → React (UI Update) -> user)
 
+---
+
 ## Data Distribution
 
-Data distribution separates data between the client and the server, to optimise performance, scalability, and security (Zealousys, 2025)[^9].  Client-side caching allows for rapid access to previously loaded content, while server side data storage allows for robust validation and sanitisation, secure storage of encrypted private data, as well as any complex aggregations and business logic needed to be performed by middleware. A hybrid approach allows for smooth user experience and optimum performance (Sharma K, 2025)[^10].
+Data distribution separates data between the client and the server, to optimise performance, scalability, and security (Zealousys, 2025)[^9]. Client-side caching allows for rapid access to previously loaded content, while server side data storage allows for robust validation and sanitisation, secure storage of encrypted private data, as well as any complex aggregations and business logic needed to be performed by middleware. A hybrid approach allows for smooth user experience and optimum performance (Sharma K, 2025)[^10].
 
 In general data distribution looks like:
 
-- **Client:** Temporary data, cached assets, authorisation/authentication tokens, user preferences
+- **Client:** Temporary data, cached assets, authorisation/authentication tokens, user preferences, UI states and modals (generally overlay or pop ups)
 - **Server:** Persistent data, secure credentials, logic dependent data
 
 A diagram of data distribution in our application:
@@ -104,17 +106,90 @@ graph TD
     end
 ```
 
+Examples of modals in our application:
+
+```js
+const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
+const [isMovieDetailsOpen, setIsMovieDetailsOpen] = useState(false);
+const [isRatingModalOpen, setIsRatingModalOpen] = useState(false);
+```
+
+---
+
 ## Feature Distribution
 
-[Explanation of feature distribution: The why of the data-distribution. Client side: stored for faster cached loading, UI states: temporary states hold no value being persistent in server: what is open, who has what open, these are temporary states. Tokens attached to headers. Server: Server validates headers, persistent data needed for calculations stored server side: server does the maths and aggregations behind the scenes, serverside application state holds all business logic's current state, including what features are available to the user, session data for all concurrent users, and real-time connection data, held due to referring to multiple users. In our project: Credentials stored for security, ReelProgress stored as single source of truth for leaderboard calculations across multiple devices, friend relationship stored for ..., cached movie data stored to ensure faster load times for subsequent users, ratings stored for recommendation and comparison aggregation]
+Feature distribution depends on your chosen data distribution model, and is essentially the "why" to the "how" of data distribution. Features act upon data, and apply business/presentation logic as required.  
+Cached client side data enables faster loading of previously requested data, UI states are stored client side as they are temporary and user dependent (EG. what is open, what has been viewed, what has been entered in a form which hasn't been submitted), authentication/authorisation and session data is stored client side to allow persistent access to protected routes/endpoints (GeeksforGeeks, 2025)[^11].  
+Server side data storage enables complex business logic and aggregations, secure storage, validation and authorisation/authentication of private data, and enables functionality of any shared or relationship dependent data (EG. friend requests, aggregated results, financial transactions).
 
-## Authorization
+Feature distribution in our application:
 
-[Explanation of authorization and how it works in our application: JWT auth, refresh tokens, headers. HOW the token validation works. Token created -> refresh token created, password and user verification through hashed comparison, securely stored enve variables.]
+```mermaid
+graph TD
+    subgraph ClientFeatures[Client Features - React]
+        A[MovieCard Animations]
+        B[Star Rating UI]
+        C[Movie Card Hover Effects]
+        D[Form Validation]
+        E[Search Filtering]
+    end
+
+    subgraph ServerFeatures[Server Features - Express]
+        F[Leaderboard Calculations]
+        G[Friend Request Logic]
+        H[JWT Token Validation]
+        I[Recommendation Algorithms]
+        J[External API Caching]
+    end
+```
+
+- **Client:** JWT Tokens held for access authorisation, movie metadata stored for faster loading, UI states stored (EG. `isWatched()` is user dependent), UI presentation data is stored
+- **Server:** Hashed credentials are stored for increased security, ReelProgress is stored to be used for aggregate functions and leaderboards, friend relationships are stored due to being directly connected to Users and to Comparison lists, cached external API data is stored to ensure faster loads to users of our application
+
+Note: Authentication/authorization in our application uses client-side JWT storage for efficient development, with plans to implement more secure httpOnly cookies for production deployment (Matharu M, 2025)[^12].
+
+---
+
+## Authorisation
+
+Authorisation in client server architecture is dependent on both sides of the equation. In a typical interaction, the client sends plain text credentials (email and password), which are converted by the server through the use of encryption software to hashed values, validated against database records (stored hashed values from registering an account), the server would then send access and refresh tokens back to the client to allow persistent access to protected functionality.
+
+Authorisation in our application:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Client
+    participant Server
+    participant Database
+
+    User->>Client: Enters email/password
+    Client->>Server: POST /login {email, password}
+    Server->>Database: Find user by email
+    Database-->>Server: User record with passwordHash
+    Server->>Server: Compare bcrypt(password, passwordHash)
+    Server->>Server: Generate JWT with user claims
+    Server->>Server: Generate refresh token
+    Server-->>Client: { accessToken, refreshToken }
+    Client->>Client: Store tokens securely
+    Note over Server: Uses process.env.JWT_SECRET<br>for token signing
+```
+
+- **Client:** Sends plain text login information (email + password), receives JWT tokens and holds client side to pass with requests to the server
+- **Server:** Hashes plain text credentials using Bcrypt and specified salting values, validates them against stored database records, uses securely stored custom environment variables (JWT `secret_key`) to create JWT tokens, sends created tokens back to the client
 
 ## Validation
 
-[Explanation of how validation is applied in our application: Client-side: forms and required fields validates before sending to server. Server: validation of JSON data and error handling, to database validation through strict Mongoose Schema]
+Validation again uses both sides of the client server coin. Though granular and more strict validation occurs on a database level through the use of models and schema, form data such as required fields or password complexity requirements are handled before they reach the server to ensure wait time and server requests are reduced (Mozilla Developer Network, 2025)[^13]. The initial validation occurs on the client side, and is then passed for further validation to the server side. In a three-tiered approach, there is even the possibility for further database level validation to occur once the server acts on data from the client.
+
+As we will have a large amount of data sent to the client in the form of the ReelCanon list, and other custom movie lists, we need to be strict about what data exists in our application to ensure a smooth and consistent user experience. While MongoDB is flexible in what can be stored, Mongoose allows us to define schema to structure our display, validate required fields and specific values, run middleware such as hooks related to actions and states, and make simpler queries (Kumar V, 2024)[^14].
+
+Validation in our application:
+
+- **Client:** React validation ensures that all required fields are submitted and correct format and complexity (EG. email must be correct format `email@email.com`, passwords must be sufficiently complex `VeryComplexPassword1999!`)
+- **Server:** Mongoose validation ensures all data is valid and secure, handles errors due to conflict across multiple records (EG. `unique`, `nullable` requirements), ensures private data is never exposed through the use of strict Mongoose Schema
+
+Note: Though not currently implemented due to the scope of our application, in future development MongoDB schema validation could be implemented to protect against malicious use and data corruption that bypass application level checks.
 
 ---
 
@@ -130,14 +205,7 @@ graph TD
 [^8] Express.js. (2025). _Using Middleware_. Express.js Documentation. Available at: <https://expressjs.com/en/guide/using-middleware.html> (Accessed: 29 September 2025)  
 [^9] Zealousys. (2024). _Client-Server Architecture_. Zealousys Blog. Available at: <https://www.zealousys.com/blog/client-server-architecture/> (Accessed: 30 September 2025)  
 [^10] Sharma, K. (2025). _Server-Side Caching vs Client-Side Caching_. Medium. Available at: <https://medium.com/@kumud.sharma.0206/server-side-caching-vs-client-side-caching-a-system-design-perspective-cf2ebae73c42> (Accessed: 29 September 2025)  
-[^11] Nolan, M. (2020). _Client distribution models_ [Diagram]. In _Client Server Architecture_. LibreTexts. Available at: <https://eng.libretexts.org/Courses/Delta_College/Introduction_to_Database_Systems/11%3A_Client_Server_Architecture/11.02%3A_Three_Components_of_Client_Server_Systems> (Accessed: 30 September 2025)  
-[^11]  
-[^12]  
-[^13]  
-[^14]
-
-Mongoose. (2025). _Mongoose Guide_. Available at: <https://mongoosejs.com/docs/guide.html> (Accessed: 29 September 2025)  
-Mongoose. (2025). _Validation_. Available at: <https://mongoosejs.com/docs/validation.html> (Accessed: 29 September 2025)  
-npm. (2025). _jsonwebtoken package_. Available at: <https://www.npmjs.com/package/jsonwebtoken> (Accessed: 29 September 2025)  
-npm. (2025). _bcrypt package_. Available at: <https://www.npmjs.com/package/bcrypt> (Accessed: 29 September 2025)  
-TheUdemezue. (2025). _How to Use JWT Token in React.js_. Dev.to. Available at: <https://dev.to/theudemezue/how-to-use-jwt-token-in-react-js-211c> (Accessed: 29 September 2025)  
+[^11] GeeksforGeeks. (2025). _Server-side Caching and Client-side Caching_. Available at: <https://www.geeksforgeeks.org/system-design/server-side-caching-and-client-side-caching/#what-is-clientside-caching> (Accessed: 19 September 2025)  
+[^12] Matharu, M. (2025). _When Not to Use Local Storage: Risks, Examples and Secure Alternatives_. Medium. Available at: <https://meenumatharu.medium.com/when-not-to-use-local-storage-risks-examples-and-secure-alternatives-de541fed56d2> (Accessed: 30 September 2025)  
+[^13] Mozilla Developer Network. (2025). _Form validation_. MDN Web Docs. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation> (Accessed: 19 September 2025)  
+[^14] Kumar, V. (2024). _Mongoose_. Dev.to. Available at: <https://dev.to/vjygour/mongoose-31jc> (Accessed: 30 September 2025)
