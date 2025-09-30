@@ -150,11 +150,22 @@ Note: Authentication/authorization in our application uses client-side JWT stora
 
 ---
 
-## Authorisation
+## Authentication & Authorisation
 
-Authorisation in client server architecture is dependent on both sides of the equation. In a typical interaction, the client sends plain text credentials (email and password), which are converted by the server through the use of encryption software to hashed values, validated against database records (stored hashed values from registering an account), the server would then send access and refresh tokens back to the client to allow persistent access to protected functionality.
+-------------------Need to fix this section up, authorisation and authentication need to be further delineated-----------------------
 
-Authorisation in our application:
+Authentication is a prerequisite for authorisation, as it verifies the identity of an entity. This could mean a user, machine, service or device. Once authentication has confirmed an identity, authorisation determines what that entity is permitted to do, using tokens and entity credentials to grant access to specific routes, functions or resources.
+
+**Authentication:**  
+
+- Handles identity verification (eg. verifying a user email and password against stored hashed values, issuing JWT tokens)
+
+**Authorisation:**
+
+- The client attaches tokens to requests to allow access to protected functionality
+- The server validates the tokens and checks roles or account priveleges to access protected behaviour (EG. `isAdmin = true`) before granting access
+
+Authentication in our application:
 
 ```mermaid
 sequenceDiagram
@@ -175,8 +186,31 @@ sequenceDiagram
     Note over Server: Uses process.env.JWT_SECRET<br>for token signing
 ```
 
+Authorisation in our application:
+
+```mermaid
+sequenceDiagram
+    participant User
+    participant Client
+    participant Server
+    participant Database
+
+    User->>Client: Attempts to access /admin route
+    Client->>Server: GET /admin {Authorization: Bearer accessToken}
+    Server->>Server: Verify JWT using secret key
+    Server->>Database: Fetch user record + role
+    Database-->>Server: User record { role: "admin" }
+    alt Role is authorised
+        Server-->>Client: 200 OK + Protected Data
+    else Role is not authorised
+        Server-->>Client: 403 Forbidden
+    end
+```
+
 - **Client:** Sends plain text login information (email + password), receives JWT tokens and holds client side to pass with requests to the server
 - **Server:** Hashes plain text credentials using Bcrypt and specified salting values, validates them against stored database records, uses securely stored custom environment variables (JWT `secret_key`) to create JWT tokens, sends created tokens back to the client
+
+**Technical Note:** Our authentication implements bcrypt hashing, with Node.js `crypto` available as a native alternative for future cryptographic needs.
 
 ## Validation
 
