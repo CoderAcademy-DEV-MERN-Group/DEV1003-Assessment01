@@ -4,7 +4,17 @@ Client-Server architecture has been a standard of web communication since the la
 In modern web applications, this model operates in a layered approach: a user enters a URL into their device's browser (client), the client contacts a DNS server to convert the URL to an IP, the client sends an HTTP request to the server at that IP address, the server responds (with HTML, CSS, Javascript, media etc), and finally the client renders the response (GeeksForGeeks, 2025)[^2]. That's already two layers of client server architecture in action: DNS resolution, followed by HTTP communication.  
 Developers use this model to distribute data and features, allowing for quick execution and display of web content, and for authorisation and validation to ensure data is secure and correct.
 
-[DIAGRAM HERE: client -> network -> server. Reference has a really good example.]
+See below diagram for typical client server interaction:
+
+```mermaid
+sequenceDiagram
+  actor User as User
+  participant WS as Web Server
+  participant DNS as DNS Server  User ->> DNS: User Request for Domain
+  DNS -->> User: Response of IP Web Server
+  User ->> WS: Makes HTTP request to IP
+  WS -->> User: HTTP Response with data files (HTML, CSS, JS)
+```
 
 Our application uses a three-tiered client-server architecture model (DataForest, 2025)[^3]:
 
@@ -66,7 +76,33 @@ Back through chain:
 
 ## Data Distribution
 
-[Explanation of data distribution: What data is stored where? Examples of generic data distributions: Client: Forms, UI states, session data, JWT tokens. Server: User credentials, ratings, application state. In our app: Client: JWT tokens held, UI state, cached movie posters, form input values, user's personal scratch progress. Server: User credentials held, ReelProgress (scratch/watch events for Leaderboard calculations), friend relationship status, cached movie metadata from external APIs, ratings]
+Data distribution separates data between the client and the server, to optimise performance, scalability, and security (Zealousys, 2025)[^9].  Client-side caching allows for rapid access to previously loaded content, while server side data storage allows for robust validation and sanitisation, secure storage of encrypted private data, as well as any complex aggregations and business logic needed to be performed by middleware. A hybrid approach allows for smooth user experience and optimum performance (Sharma K, 2025)[^10].
+
+In general data distribution looks like:
+
+- **Client:** Temporary data, cached assets, authorisation/authentication tokens, user preferences
+- **Server:** Persistent data, secure credentials, logic dependent data
+
+A diagram of data distribution in our application:
+
+```mermaid
+graph TD
+    subgraph ClientData[Client Data]
+        A[UI States<br>isWatched, modals]
+        B[JWT Tokens<br>authentication]
+        C[Cached Assets<br>posters, images]
+        D[Form Inputs<br>user entries]
+        E[User Preferences<br>filters, themes]
+    end
+
+    subgraph ServerData[Server Data]
+        F[Hashed Credentials<br>passwords, emails]
+        G[ReelProgress<br>watch events]
+        H[Friend Relationships<br>social data]
+        I[Aggregated Ratings<br>leaderboard calc]
+        J[Cached API Data<br>movie metadata]
+    end
+```
 
 ## Feature Distribution
 
@@ -84,24 +120,24 @@ Back through chain:
 
 ## References
 
-[^1] ScienceDirect. (2025). _Client-Server Architecture_. Elsevier. Available at: <https://www.sciencedirect.com/topics/computer-science/client-server-architecture> (Accessed: 19 September 2025)  
-[^2] GeeksforGeeks. (2025). _Client-Server Model_. Available at: <https://www.geeksforgeeks.org/system-design/client-server-model/> (Accessed: 19 September 2025)  
-[^3] DataForest. (2025). _Client-Server Model Glossary_. Available at: <https://dataforest.ai/glossary/client-server-model> (Accessed: 19 September 2025)  
-[^4] Das, S. (2025). _Client-Server Communication: A Deep Dive_. LinkedIn. Available at: <https://www.linkedin.com/pulse/client-server-communication-deep-dive-sandip-das-zljcc/> (Accessed: 19 September 2025)  
-[^5] Mozilla Developer Network. (2025). _Client-Server Overview_. MDN Web Docs. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview> (Accessed: 19 September 2025)  
-[^6] Postman. (2025). _What are HTTP headers?_. Postman Blog. Available at: <https://blog.postman.com/what-are-http-headers/> (Accessed: 19 September 2025)  
-[^7] React. (2025). _Reacting to Input with State_. React Documentation. Available at: <https://react.dev/learn/reacting-to-input-with-state> (Accessed: 19 September 2025)  
-[^8] Express.js. (2025). _Using Middleware_. Express.js Documentation. Available at: <https://expressjs.com/en/guide/using-middleware.html> (Accessed: 19 September 2025)  
-[^9]  
-[^10]  
+[^1] ScienceDirect. (2025). _Client-Server Architecture_. Elsevier. Available at: <https://www.sciencedirect.com/topics/computer-science/client-server-architecture> (Accessed: 29 September 2025)  
+[^2] GeeksforGeeks. (2025). _Client-Server Model_. Available at: <https://www.geeksforgeeks.org/system-design/client-server-model/> (Accessed: 29 September 2025)  
+[^3] DataForest. (2025). _Client-Server Model Glossary_. Available at: <https://dataforest.ai/glossary/client-server-model> (Accessed: 29 September 2025)  
+[^4] Das, S. (2025). _Client-Server Communication: A Deep Dive_. LinkedIn. Available at: <https://www.linkedin.com/pulse/client-server-communication-deep-dive-sandip-das-zljcc/> (Accessed: 29 September 2025)  
+[^5] Mozilla Developer Network. (2025). _Client-Server Overview_. MDN Web Docs. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview> (Accessed: 29 September 2025)  
+[^6] Postman. (2023). _What are HTTP headers?_. Postman Blog. Available at: <https://blog.postman.com/what-are-http-headers/> (Accessed: 29 September 2025)  
+[^7] React. (2025). _Reacting to Input with State_. React Documentation. Available at: <https://react.dev/learn/reacting-to-input-with-state> (Accessed: 29 September 2025)  
+[^8] Express.js. (2025). _Using Middleware_. Express.js Documentation. Available at: <https://expressjs.com/en/guide/using-middleware.html> (Accessed: 29 September 2025)  
+[^9] Zealousys. (2024). _Client-Server Architecture_. Zealousys Blog. Available at: <https://www.zealousys.com/blog/client-server-architecture/> (Accessed: 30 September 2025)  
+[^10] Sharma, K. (2025). _Server-Side Caching vs Client-Side Caching_. Medium. Available at: <https://medium.com/@kumud.sharma.0206/server-side-caching-vs-client-side-caching-a-system-design-perspective-cf2ebae73c42> (Accessed: 29 September 2025)  
+[^11] Nolan, M. (2020). _Client distribution models_ [Diagram]. In _Client Server Architecture_. LibreTexts. Available at: <https://eng.libretexts.org/Courses/Delta_College/Introduction_to_Database_Systems/11%3A_Client_Server_Architecture/11.02%3A_Three_Components_of_Client_Server_Systems> (Accessed: 30 September 2025)  
 [^11]  
 [^12]  
 [^13]  
+[^14]
 
-Computer Hope. (2025). _Client-Server Model_. Available at: <https://www.computerhope.com/jargon/c/clientse.htm> (Accessed: 19 September 2025)
-Mongoose. (2025). _Mongoose Guide_. Available at: <https://mongoosejs.com/docs/guide.html> (Accessed: 19 September 2025)  
-Mongoose. (2025). _Validation_. Available at: <https://mongoosejs.com/docs/validation.html> (Accessed: 19 September 2025)  
-npm. (2025). _jsonwebtoken package_. Available at: <https://www.npmjs.com/package/jsonwebtoken> (Accessed: 19 September 2025)  
-npm. (2025). _bcrypt package_. Available at: <https://www.npmjs.com/package/bcrypt> (Accessed: 19 September 2025)  
-TheUdemezue. (2025). _How to Use JWT Token in React.js_. Dev.to. Available at: <https://dev.to/theudemezue/how-to-use-jwt-token-in-react-js-211c> (Accessed: 19 September 2025)  
-Sharma, K. (2025). _Server-Side Caching vs Client-Side Caching_. Medium. Available at: <https://medium.com/@kumud.sharma.0206/server-side-caching-vs-client-side-caching-a-system-design-perspective-cf2ebae73c42> (Accessed: 19 September 2025)
+Mongoose. (2025). _Mongoose Guide_. Available at: <https://mongoosejs.com/docs/guide.html> (Accessed: 29 September 2025)  
+Mongoose. (2025). _Validation_. Available at: <https://mongoosejs.com/docs/validation.html> (Accessed: 29 September 2025)  
+npm. (2025). _jsonwebtoken package_. Available at: <https://www.npmjs.com/package/jsonwebtoken> (Accessed: 29 September 2025)  
+npm. (2025). _bcrypt package_. Available at: <https://www.npmjs.com/package/bcrypt> (Accessed: 29 September 2025)  
+TheUdemezue. (2025). _How to Use JWT Token in React.js_. Dev.to. Available at: <https://dev.to/theudemezue/how-to-use-jwt-token-in-react-js-211c> (Accessed: 29 September 2025)  
