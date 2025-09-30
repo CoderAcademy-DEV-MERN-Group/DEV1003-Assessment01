@@ -201,7 +201,6 @@ For our initial setup to keep it simple and clear for the planning and documenta
 - Testing → Bug fixing and Validation
 - Done → Completed tasks
 
-
 This included coverage for:
 
 - Defining roles and responsibilities
