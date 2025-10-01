@@ -18,9 +18,15 @@ sequenceDiagram
 
 Our application implements this pattern through a three-tiered client-server architecture model (DataForest, 2025)[^3]:
 
-- **Tier 1 (Presentation):** React is used for the client front-end framework
-- **Tier 2 (Application):** Express is used as the server for business logic and database manipulation
-- **Tier 3 (Data):** MongoDB is the database layer, with Mongoose providing validation and data modelling
+- **Tier 1 (Presentation):** `React` is used for the client front-end framework
+- **Tier 2 (Application):** `Express` is used as the server for business logic and database manipulation
+- **Tier 3 (Data):** MongoDB is the database layer, with `Mongoose` providing validation and data modelling
+
+```mermaid
+graph TD
+    A[Client<br>React UI Checks] --> B[Server<br>Express + Mongoose]
+    B --> C[Database<br>MongoDB Persistence]
+```
 
 Below we will discuss the key features of the client-server architecture model, and how they will be implemented in our application.
 
@@ -44,10 +50,10 @@ Server-side middleware is used to act on requests from the client, and manipulat
 
 In our application:
 
-- React frontend sends requests and user input, and manages UI states (React, 2025)[^7]
-- Express middleware handles application logic, routing, and error handling (Express.js, 2025)[^8]
-- Mongoose performs MongoDB database operations and manipulation as required by request type
-- Express sends a JSON response to the React frontend, which renders components and updates UI states
+- `React` frontend sends requests and user input, and manages UI states (`React`, 2025)[^7]
+- `Express` middleware handles application logic, routing, and error handling (`Express`.js, 2025)[^8]
+- `Mongoose` performs MongoDB database operations and manipulation as required by request type
+- `Express` sends a JSON response to the `React` frontend, which renders components and updates UI states
 
 Examples of HTTP verbs in our application:
 
@@ -68,11 +74,28 @@ PATCH /api/progress/456 { isScratched: true }
 DELETE /api/friends/789
 ```
 
---> DIAGRAM HERE: <--
-shows flow of our application:  
-User Action (Clicks drama genre filter) → React (GET /api/movies?genre=drama) → Express (Movie.find({genre: "drama})) → Mongoose (db.movies.find({genre: "drama"})) → MongoDB.  
-Back through chain:  
-(MongoDB (return drama movies) -> Mongoose (serialized movie data) -> Express (JSON response) → React (UI Update) -> user)
+The below diagram shows the typical communication flow in our application:
+
+```mermaid
+---
+config:
+  theme: redux-color
+---
+sequenceDiagram
+    participant User
+    participant React
+    participant Express
+    participant Mongoose
+    participant MongoDB
+    User->>React: Clicks drama genre filter
+    React->>Express: GET /api/movies?genre=drama
+    Express->>Mongoose: Movie.find({genre: "drama"})
+    Mongoose->>MongoDB: db.movies.find({genre: "drama"})
+    MongoDB-->>Mongoose: return drama movies
+    Mongoose-->>Express: serialized movie data
+    Express-->>React: JSON response
+    React-->>User: UI Update
+```
 
 ---
 
@@ -146,26 +169,18 @@ graph TD
 - **Client:** JWT Tokens held for access authorisation, movie metadata stored for faster loading, UI states stored (EG. `isWatched()` is user dependent), UI presentation data is stored
 - **Server:** Hashed credentials are stored for increased security, ReelProgress is stored to be used for aggregate functions and leaderboards, friend relationships are stored due to being directly connected to Users and to Comparison lists, cached external API data is stored to ensure faster loads to users of our application
 
-Note: Authentication/authorization in our application uses client-side JWT storage for efficient development, with plans to implement more secure httpOnly cookies for production deployment (Matharu M, 2025)[^12].
+Note: Authentication/authorisation in our application uses client-side JWT storage for efficient development, with plans to implement more secure httpOnly cookies for production deployment (Matharu M, 2025)[^12].
 
 ---
 
 ## Authentication & Authorisation
 
--------------------Need to fix this section up, authorisation and authentication need to be further delineated-----------------------
+Authentication and authorisation are related but distinct processes:
 
-Authentication is a prerequisite for authorisation, as it verifies the identity of an entity. This could mean a user, machine, service or device. Once authentication has confirmed an identity, authorisation determines what that entity is permitted to do, using tokens and entity credentials to grant access to specific routes, functions or resources.
+- **Authentication:** _"Who is this entity"_. Handles identity verification of entities (users, devices or machines)
+- **Authorisation:** _"What can this entity do?"_ Occurs **after** authentication, determining permissions by denying or granting access to protected routes, functions or resources
 
-**Authentication:**  
-
-- Handles identity verification (eg. verifying a user email and password against stored hashed values, issuing JWT tokens)
-
-**Authorisation:**
-
-- The client attaches tokens to requests to allow access to protected functionality
-- The server validates the tokens and checks roles or account priveleges to access protected behaviour (EG. `isAdmin = true`) before granting access
-
-Authentication in our application:
+Authentication in our application means checking a user's email and password against hashed values, and issuing JWT tokens on success:
 
 ```mermaid
 sequenceDiagram
@@ -186,7 +201,10 @@ sequenceDiagram
     Note over Server: Uses process.env.JWT_SECRET<br>for token signing
 ```
 
-Authorisation in our application:
+- **Client:** Sends credentials to the server over secure HTTPS, receives JWT access and refresh tokens and stores them
+- **Server:** Validates credentials using Bcrypt and specified salting values, uses securely stored custom environment variables (`JWT secret`) to generate JWT tokens, sends created tokens back to the client
+
+Authorisation in our application determines which routes and functions are accessible to users. Tokens generated during authentication are attached to requests (through `Bearer Token` headers), and the server checks their validity, expiry, and any role based privileges before granting access:
 
 ```mermaid
 sequenceDiagram
@@ -196,7 +214,7 @@ sequenceDiagram
     participant Database
 
     User->>Client: Attempts to access /admin route
-    Client->>Server: GET /admin {Authorization: Bearer accessToken}
+    Client->>Server: GET /admin {authorisation: Bearer accessToken}
     Server->>Server: Verify JWT using secret key
     Server->>Database: Fetch user record + role
     Database-->>Server: User record { role: "admin" }
@@ -207,23 +225,39 @@ sequenceDiagram
     end
 ```
 
-- **Client:** Sends plain text login information (email + password), receives JWT tokens and holds client side to pass with requests to the server
-- **Server:** Hashes plain text credentials using Bcrypt and specified salting values, validates them against stored database records, uses securely stored custom environment variables (JWT `secret_key`) to create JWT tokens, sends created tokens back to the client
+- **Client:** `React` client sends access tokens (JWT) in header of request, attempts to access protected routes, if valid, receives protected data and/or accesses protected behaviours
+- **Server:** Verifies JWT tokens signature and expiry, checks user roles or privileges (e.g. `isAdmin = True`), allows or denies access accordingly
 
-**Technical Note:** Our authentication implements bcrypt hashing, with Node.js `crypto` available as a native alternative for future cryptographic needs.
+**Technical Note:** Our plan for authentication implements `bcrypt` hashing, with `Node.js` `crypto` available as a native alternative for future cryptographic needs to protect against any package security concerns.
 
 ## Validation
 
-Validation again uses both sides of the client server coin. Though granular and more strict validation occurs on a database level through the use of models and schema, form data such as required fields or password complexity requirements are handled before they reach the server to ensure wait time and server requests are reduced (Mozilla Developer Network, 2025)[^13]. The initial validation occurs on the client side, and is then passed for further validation to the server side. In a three-tiered approach, there is even the possibility for further database level validation to occur once the server acts on data from the client.
-
-As we will have a large amount of data sent to the client in the form of the ReelCanon list, and other custom movie lists, we need to be strict about what data exists in our application to ensure a smooth and consistent user experience. While MongoDB is flexible in what can be stored, Mongoose allows us to define schema to structure our display, validate required fields and specific values, run middleware such as hooks related to actions and states, and make simpler queries (Kumar V, 2024)[^14].
+Validation uses both client and server layers, client-side validates things like form inputs (required fields, formats and password complexity) to reduce wait times, and provide an initial layer against data corruption. Server-side validation occurs after, ensuring anything missed from the client-side validation does not make it to the database. We are using a three-tiered approach, where `Mongoose` provides schema validation for data sets, ensuring consistent user experience despite MongoDB and NoSQL flexibility (Mozilla Developer Network, 2025; Kumar V, 2024)[^13][^14].
 
 Validation in our application:
 
-- **Client:** React validation ensures that all required fields are submitted and correct format and complexity (EG. email must be correct format `email@email.com`, passwords must be sufficiently complex `VeryComplexPassword1999!`)
-- **Server:** Mongoose validation ensures all data is valid and secure, handles errors due to conflict across multiple records (EG. `unique`, `nullable` requirements), ensures private data is never exposed through the use of strict Mongoose Schema
+- **Client:** `React` validation ensures that all required fields are submitted and correct format and complexity (EG. email must be correct format `email@email.com`, passwords must be sufficiently complex `VeryComplexPassword1999!`)
+- **Server:** `Mongoose` validation ensures all data is valid and secure, handles errors due to conflict across multiple records (EG. `unique`, `nullable` requirements), ensures private data is never exposed through the use of strict `Mongoose` Schema
 
-Note: Though not currently implemented due to the scope of our application, in future development MongoDB schema validation could be implemented to protect against malicious use and data corruption that bypass application level checks.
+A typical validation flow in our application is pictured below:
+
+```mermaid
+graph LR
+    A[User Input] --> B[Client: React]
+    B --> C[Server: Express]
+    C --> D[Database: Mongoose]
+    D --> E[MongoDB]
+
+    B -->|Check Input Format and Required Fields| F[Immediate Error]
+    C -->|Business Rules & Middleware| G[400 Error]
+    D -->|Schema & Unique Validation| H[Validation Error]
+
+    style F fill: red
+    style G fill: red
+    style H fill: red
+```
+
+Note: `Mongoose` provides application-level schema validation, future development _could_ include the use of MongoDB database-level schema validation as a final defense against malicious or corrupt data which bypasses application checks.
 
 ---
 
@@ -235,11 +269,11 @@ Note: Though not currently implemented due to the scope of our application, in f
 [^4] Das, S. (2025). _Client-Server Communication: A Deep Dive_. LinkedIn. Available at: <https://www.linkedin.com/pulse/client-server-communication-deep-dive-sandip-das-zljcc/> (Accessed: 29 September 2025)  
 [^5] Mozilla Developer Network. (2025). _Client-Server Overview_. MDN Web Docs. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview> (Accessed: 29 September 2025)  
 [^6] Postman. (2023). _What are HTTP headers?_. Postman Blog. Available at: <https://blog.postman.com/what-are-http-headers/> (Accessed: 29 September 2025)  
-[^7] React. (2025). _Reacting to Input with State_. React Documentation. Available at: <https://react.dev/learn/reacting-to-input-with-state> (Accessed: 29 September 2025)  
-[^8] Express.js. (2025). _Using Middleware_. Express.js Documentation. Available at: <https://expressjs.com/en/guide/using-middleware.html> (Accessed: 29 September 2025)  
+[^7] `React`. (2025). _`React`ing to Input with State_. `React` Documentation. Available at: <https://`react`.dev/learn/`react`ing-to-input-with-state> (Accessed: 29 September 2025)  
+[^8] `Express`.js. (2025). _Using Middleware_. `Express`.js Documentation. Available at: <https://`express`js.com/en/guide/using-middleware.html> (Accessed: 29 September 2025)  
 [^9] Zealousys. (2024). _Client-Server Architecture_. Zealousys Blog. Available at: <https://www.zealousys.com/blog/client-server-architecture/> (Accessed: 30 September 2025)  
 [^10] Sharma, K. (2025). _Server-Side Caching vs Client-Side Caching_. Medium. Available at: <https://medium.com/@kumud.sharma.0206/server-side-caching-vs-client-side-caching-a-system-design-perspective-cf2ebae73c42> (Accessed: 29 September 2025)  
 [^11] GeeksforGeeks. (2025). _Server-side Caching and Client-side Caching_. Available at: <https://www.geeksforgeeks.org/system-design/server-side-caching-and-client-side-caching/#what-is-clientside-caching> (Accessed: 19 September 2025)  
 [^12] Matharu, M. (2025). _When Not to Use Local Storage: Risks, Examples and Secure Alternatives_. Medium. Available at: <https://meenumatharu.medium.com/when-not-to-use-local-storage-risks-examples-and-secure-alternatives-de541fed56d2> (Accessed: 30 September 2025)  
 [^13] Mozilla Developer Network. (2025). _Form validation_. MDN Web Docs. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation> (Accessed: 19 September 2025)  
-[^14] Kumar, V. (2024). _Mongoose_. Dev.to. Available at: <https://dev.to/vjygour/mongoose-31jc> (Accessed: 30 September 2025)
+[^14] Kumar, V. (2024). _`Mongoose`_. Dev.to. Available at: <https://dev.to/vjygour/`Mongoose`-31jc> (Accessed: 30 September 2025)
