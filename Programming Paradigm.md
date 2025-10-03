@@ -152,8 +152,8 @@ console.log(user.password); // Anyone can read it!
 ```js
 const UserSchema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
-  email:    { type: String, required: true, unique: true },
-  passwordHash: { type: String, required: true }
+  email: { type: String, required: true, unique: true },
+  passwordHash: { type: String, required: true },
 });
 
 // Encapsulation through schema methods
@@ -261,27 +261,32 @@ Below is an example of Mongoose schema inheritance for `List` objects in _The Ce
 
 ```js
 // Base schema for all lists
-const ListSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  movies: [{ type: mongoose.Types.ObjectId, ref: "Movie" }],
-  createdBy: { type: mongoose.Types.ObjectId, ref: "User" }
-}, { discriminatorKey: "listType", timestamps: true });
+const ListSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    movies: [{ type: mongoose.Types.ObjectId, ref: "Movie" }],
+    createdBy: { type: mongoose.Types.ObjectId, ref: "User" },
+  },
+  { discriminatorKey: "listType", timestamps: true }
+);
 
 // Base model
 const List = mongoose.model("List", ListSchema);
 
 // Inherited model: The Reel Canon (fixed)
-const ReelCanon = List.discriminator("ReelCanon",
+const ReelCanon = List.discriminator(
+  "ReelCanon",
   new mongoose.Schema({
-    isLocked: { type: Boolean, default: true } // cannot be edited by users
+    isLocked: { type: Boolean, default: true }, // cannot be edited by users
   })
 );
 
 // Inherited model: Custom List (user-generated)
-const CustomList = List.discriminator("CustomList",
+const CustomList = List.discriminator(
+  "CustomList",
   new mongoose.Schema({
     description: String,
-    isPublic: { type: Boolean, default: false }
+    isPublic: { type: Boolean, default: false },
   })
 );
 ```
