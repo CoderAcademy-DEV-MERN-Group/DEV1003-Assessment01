@@ -1,17 +1,17 @@
 # Kanban Task Management Methodology
 
-Kanban is a visual workflow management framework that emphasises transparency, limiting work-in-progress (WIP), and continuous flow (Atlassian, 2024).
+Kanban is a visual workflow management framework that emphasises transparency, limiting work-in-progress (WIP), and continuous flow [Atlassian: Kanban Principles, 2025](https://www.atlassian.com/agile/project-management/kanban-principles).
 
-We chose Kanban because it provides a clear, shared view of work and complements Agile by offering a simple, visible way to manage tasks. Kanban helps our team visualise workflow, manage priorities, and adapt as requirements shift. This makes it especially effective for a small team working across three project phases.
+We chose Kanban as the task management methodology for The Century Screening Room project because it provides a clear, shared view of work and complements Agile by offering a simple, visible way to manage tasks. Kanban helps our team visualise workflow, manage priorities, and adapt as requirements shift. This makes it especially effective for a small team working across three project phases.
 
 ## Kanban Methodology Core Principles
 
 - **Visualise the workflow:** Tasks are represented as cards are moved across columns as the status progresses. Kanban board columns make progress visible to all team members at a glance.
-- **Limit WIP:** Apply work in progresss (WIP) to prevent overload and highlight bottlenecks (eg. < 3 cards per person)
+- **Limit WIP:** Apply work in progress (WIP) to prevent overload and highlight bottlenecks (eg. < 3 cards per person)
 - **Continuous improvement:** Evolve the board as project needs shift.
 - **Shared ownership:** No single leader — all team members manage the board.
 
-*Diagram Figure 13: Kanban Workflow in Practice (Team, Trello, GitHub)*
+### *Diagram Figure 13: Kanban Workflow in Practice (Team, Trello, GitHub)*
 
 ```mermaid
 sequenceDiagram
@@ -27,14 +27,13 @@ sequenceDiagram
     Team->>Team: Retrospective (keep/change/try)
 ```
 
-
 ## Implementation of Kanban in Practice
 
 We use Kanban via Trello as our task management framework to visualise workflow and manage priorities.
 
 ### Kanban Board Structure
 
-We implemented our Kanban board in Trello with the following columns for Phase 1 - Planning, Design and Documentation:
+We used Trello as our Kanban board so that we can collaboratively manage priorities, limit WIP to prevent overload and continuously improve through retrospectives. We created the following columns to represent each stage of the task status for Phase 1 - Planning, Design and Documentation:
 
 - **Backlog** – Ideas & future tasks
 - **Sprint Backlog (To Do)** – Tasks planned for the current sprint
@@ -42,7 +41,7 @@ We implemented our Kanban board in Trello with the following columns for Phase 1
 - **Review and Feedback (QA)** – Peer review, feedback and testing
 - **Done** – Reviewed and completed tasks (kept visible for accountability), linked and pushed to GitHub central repository for version control.
 
-*Diagram Figure 14: Trello Kanban Board Structure (Phase 1 Baseline)*
+### *Diagram Figure 14: Trello Kanban Board Structure (Phase 1 Baseline)*
 
 ```mermaid
 flowchart LR
@@ -65,11 +64,13 @@ flowchart LR
 
 ### Agile Integration with Kanban
 
-- **Sprint Planning:** pull task cards from Backlog → Sprint Backlog
-- **Daily stand-ups:** reference card status
-- **Retrospectives:** to adjust WIP limits/columns if flow stalls.
+Kanban integrates with our Agile methodology [Atlassian: Agile Coach, 2025](https://www.atlassian.com/agile) to maintain flow and structure:
 
-*Diagram Figure 15: Kanban Flow Integrated with Agile Sprint Practices*
+- **Sprint Planning:** Tasks are pulled from Backlog → Sprint Backlog during planning meetings.
+- **Daily stand-ups:** Discuss blockers and updates using card statuses on Slack.
+- **Retrospectives:** Review WIP limits and productivity and refine Trello columns or other requirements as needed.
+
+### *Diagram Figure 15: Kanban Flow Integrated with Agile Sprint Practices*
 
 ```mermaid
 flowchart TB
@@ -85,24 +86,29 @@ flowchart TB
     I --> A
 ```
 
-## Kanban Board Evolution Across Phases
+## Kanban in Our Proposed Project
+
+Kanban is the chosen task management methodology for The Century Screening Room project. It will be applied consistently across all development phases of Planning, Design and Documentation, Back-End Development and Front-End development to support collaboration, visibility and accountability.
 
 During development and implementation phases, additional columns like Testing/Debugging, Deployment/CI may be added. Labels (High/Medium/Low) and swimlanes help manage priorities, blockers, and dependencies.
 
 **Phase 1 - Planning, Design and Documentation:**
 
-- Baseline columns (above) with tasks cards for ERDs, wireframes, methodologies, roles etc.
+- Managed documentation tasks like documentation for programming paradigm, software architecture pattern and design, ERDs, wireframes and project and task management methodologies from drafts to polished versions.
+- Eg. “Design Wireframes” card included acceptance criteria, linked Figma files, and followed the full flow Backlog → In Progress → QA → Done.
 
 **Phase 2 - Back-End Development:**
 
 - Add Testing, Debugging, Deployment and CI related columns/labels
-- Eg. Tasks cards/user stories for endpoints, schemas, controllers, error handling, seed data and using labels to distinguish attributes such as bug/feature, priorities, blockers etc.
+<!-- - Eg. Tasks cards/user stories for endpoints, schemas, controllers, error handling, seed data and using labels to distinguish attributes such as bug/feature, priorities, blockers etc. -->
+- Eg. “Implement Express Controllers” tracked PRs in GitHub and Insomnia test links. Labels will be used for visual cue such as marking priorities, feature, bug, testing etc.
 
 **Phase 3 - Front-End Development:**
 
 - Add Design swimlane and Bug Fix column such as for tasks cards/user stories for UI/UX components, accessibility, responsiveness and integration.
+- Eg. “Build Leaderboard Component” card will include Figma references, acceptance criteria, and GitHub PR links for review.
 
-*Diagram Figure 16: Kanban Task Card Structure (MVP Breakdown)*
+### *Diagram Figure 16: Kanban Task Card Structure (MVP Breakdown)*
 
 ## Cards Breakdown (MVP)
 
@@ -140,8 +146,8 @@ classDiagram
 
 **Example Task:** Wireframes Design
 
-- **Backlog:** Planning discussions for project design and component features for the app idea and vision including component criterias for pages including for User Profile, Leaderboard, Reel Canon, Search/filter box, grid cards etc.s
-- **Sprint Backlog:** Task card created for "Design Wireframes for The Century Screening Room Project” and assigned team member with acceptance criterias
+- **Backlog:** Planning discussions for project design and component features for the app idea and vision including component criteria for pages including for User Profile, Leaderboard, Reel Canon, Search/filter box, grid cards etc.s
+- **Sprint Backlog:** Task card created for "Design Wireframes for The Century Screening Room Project” and assigned team member with acceptance criteria
 - **In Progress:** Task card is moved along to in progress when being worked on.
 - **Review/Feedback (QA):** Slack feedback, Zoom meeting calls and screensharing to discuss Figma design aligned to project scope and vision.
 - **Done:** Export Figma designs and commit to repo for PR review and reiterate Agile cycle if necessary until acceptance criteria and DoD has been met and approved my team.
