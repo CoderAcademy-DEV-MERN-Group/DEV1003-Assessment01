@@ -49,7 +49,17 @@ Other HTTP verbs which are less often used, or execute advanced tasks are: `HEAD
 
 Headers are also used to carry metadata such as authentication and authorisation, content type, caching, and any other useful information not necessarily included in the request/response body [(Postman, 2025)](https://blog.postman.com/what-are-http-headers/).
 
-Server-side middleware is used to act on requests from the client, and manipulate database records. Responses are then sent back to the client.
+Server-side middleware is used to act on requests from the client, and manipulate database records. Responses are then sent back to the client, with additional status codes to indicate the result of the request. Common status codes in our application include:
+
+- `200 OK` - Success
+- `201 Created` - Resource successfully created
+- `400 Bad Request` - Client-side error (e.g. invalid input)
+- `401 Unauthorized` - Authentication required or failed
+- `403 Forbidden` - User is authenticated but access is not permitted
+- `404 Not Found` - Resource not found
+- `500 Internal Server Error` - Unexpected server-side error
+
+This two way communication allows the client and server to work together to gracefully handle all requests and responses.
 
 In our application:
 
