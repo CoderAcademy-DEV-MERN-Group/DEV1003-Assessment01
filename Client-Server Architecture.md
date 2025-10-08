@@ -4,7 +4,7 @@ Client-Server architecture has been a standard of web communication since the la
 In modern web applications, this model operates in a layered approach: a user enters a URL into their device's browser (client), the client contacts a DNS server to convert the URL to an IP, the client sends an HTTP request to the server at that IP address, the server responds (with HTML, CSS, Javascript, media etc), and finally the client renders the response [(GeeksForGeeks, 2025)](https://www.geeksforgeeks.org/system-design/client-server-model/). That's already two layers of client server architecture in action: DNS resolution, followed by HTTP communication.  
 Developers use this model to distribute data and features, allowing for quick execution and display of web content, and for authorisation and validation to ensure data is secure and correct.
 
-See below diagram for typical client server interaction:
+**_Diagram Figure 1: Client Server Architecture In Action (Client -> DNS Server, Client -> Web Server)_**
 
 ```mermaid
 sequenceDiagram
@@ -22,6 +22,8 @@ Our application implements this pattern through a three-tiered client-server arc
 - **Tier 1 (Presentation):** `React` is used for the client front-end framework
 - **Tier 2 (Application):** `Express` is used as the server for business logic and database manipulation
 - **Tier 3 (Data):** MongoDB is the database layer, with `Mongoose` providing validation and data modelling
+
+**_Diagram Figure 2: Three Tiered Client Server Architecture Model (React, Express, MongoDB)_**
 
 ```mermaid
 graph TD
@@ -75,7 +77,7 @@ PATCH /api/progress/456 { isScratched: true }
 DELETE /api/friends/789
 ```
 
-The below diagram shows the typical communication flow in our application:
+**__**Diagram Figure 3: A typical communication flow in our application (React, Express, Mongoose, MongoDB)**__**
 
 ```mermaid
 ---
@@ -109,7 +111,7 @@ In general data distribution looks like:
 - **Client:** Temporary data, cached assets, authorisation/authentication tokens, user preferences, UI states and modals (generally overlay or pop ups)
 - **Server:** Persistent data, secure credentials, logic dependent data
 
-A diagram of data distribution in our application:
+**_Diagram Figure 4: A diagram of data distribution in our application_**
 
 ```mermaid
 graph TD
@@ -165,7 +167,7 @@ Feature distribution depends on your chosen data distribution model, and is esse
 Cached client side data enables faster loading of previously requested data, UI states are stored client side as they are temporary and user dependent (EG. what is open, what has been viewed, what has been entered in a form which hasn't been submitted), authentication/authorisation and session data is stored client side to allow persistent access to protected routes/endpoints [(GeeksforGeeks, 2025)](https://www.geeksforgeeks.org/system-design/server-side-caching-and-client-side-caching/).  
 Server side data storage enables complex business logic and aggregations, secure storage, validation and authorisation/authentication of private data, and enables functionality of any shared or relationship dependent data (EG. friend requests, aggregated results, financial transactions).
 
-Feature distribution in our application:
+**_Diagram Figure 4: Feature distribution in our application_**
 
 ```mermaid
 graph TD
@@ -200,7 +202,9 @@ Authentication and authorisation are related but distinct processes:
 - **Authentication:** _"Who is this entity"_. Handles identity verification of entities (users, devices or machines)
 - **Authorisation:** _"What can this entity do?"_ Occurs **after** authentication, determining permissions by denying or granting access to protected routes, functions or resources
 
-Authentication in our application means checking a user's email and password against hashed values, and issuing JWT tokens on success:
+Authentication in our application means checking a user's email and password against hashed values, and issuing JWT tokens on success.
+
+**_Diagram Figure 5: Authentication in action in our application (Bcrypt, JWT)_**
 
 ```mermaid
 sequenceDiagram
@@ -224,7 +228,9 @@ sequenceDiagram
 - **Client:** Sends credentials to the server over secure HTTPS, receives JWT access and refresh tokens and stores them
 - **Server:** Validates credentials using Bcrypt and specified salting values, uses securely stored custom environment variables (`JWT secret`) to generate JWT tokens, sends created tokens back to the client
 
-Authorisation in our application determines which routes and functions are accessible to users. Tokens generated during authentication are attached to requests (through `Bearer Token` headers), and the server checks their validity, expiry, and any role based privileges before granting access:
+Authorisation in our application determines which routes and functions are accessible to users. Tokens generated during authentication are attached to requests (through `Bearer Token` headers), and the server checks their validity, expiry, and any role based privileges before granting access.
+
+**_Diagram Figure 6: Authorisation in practice in our application (JWT headers, protected routes)_**
 
 ```mermaid
 sequenceDiagram
@@ -259,7 +265,7 @@ Validation in our application:
 - **Client:** `React` validation ensures that all required fields are submitted and correct format and complexity (EG. email must be correct format `email@email.com`, passwords must be sufficiently complex `VeryComplexPassword1999!`)
 - **Server:** `Mongoose` validation ensures all data is valid and secure, handles errors due to conflict across multiple records (EG. `unique`, `nullable` requirements), ensures private data is never exposed through the use of strict `Mongoose` Schema
 
-A typical validation flow in our application is pictured below:
+**_Diagram Figure 7: Validation in action in our application (React, Express, Mongoose)_**
 
 ```mermaid
 graph LR

@@ -104,7 +104,7 @@ In our project:
 
 Encapsulation bundles data and methods which operate on the data within a single class or object, while restricting access to some of the objects components. This is achieved through the implementation of private properties and other modifiers.
 
-Please see the diagram below to illustrate this concept:
+**_Diagram Figure 1: Encapsulation in our application (private user data)_**
 
 ```mermaid
 classDiagram
@@ -179,7 +179,7 @@ In our project:
 
 Inheritance is the passing of properties and methods from an existing _parent_ object to a new related _child_ object. This is helpful for almost all programming projects, as it promotes code re-use, keeping codeblocks DRY, and forms logical hierarchy for related objects.
 
-Please see the below diagram to illustrate the concept of inheritance:
+**_Diagram Figure 2: Class based inheritance_**
 
 ```mermaid
 classDiagram
