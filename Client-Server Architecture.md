@@ -10,7 +10,8 @@ See below diagram for typical client server interaction:
 sequenceDiagram
   actor User as User
   participant WS as Web Server
-  participant DNS as DNS Server  User ->> DNS: User Request for Domain
+  participant DNS as DNS Server  
+  User ->> DNS: User Request for Domain
   DNS -->> User: Response of IP Web Server
   User ->> WS: Makes HTTP request to IP
   WS -->> User: HTTP Response with data files (HTML, CSS, JS)
@@ -67,7 +68,7 @@ POST /api/ratings { movieId: 456, rating: 5 }
 POST /api/friends { friendId: 789 }
 
 // PATCH - Update user profile and scratch progress
-PATCH /api/users/123 { favoriteGenres: ['drama'] }
+PATCH /api/users/123 { favouriteGenres: ['drama'] }
 PATCH /api/progress/456 { isScratched: true }
 
 // DELETE - Remove friends and user data
@@ -145,7 +146,7 @@ Data security will be implemented in our application across several layers of ou
 
 **Security Benefits:** As our application is a three-tiered system, this allows us three layers of security measures to prevent risk to data. The separation provides natural breach security, as a compromise in any one layer doesn't automatically grant access to others:
 
-- **Client:** HTTPS provides a secure and encrypted method of plain text communication between client and server, using SSL certificates to authenticate and encrypt data during transfer. The `Render` platform uses SSL certifactes natively, in our application this will ensure safe transmission of private data (passwords, email) and ensure authorisation tokens are not directly accessible to any malicious attacks or data breaches [(Amazon, 2025)](https://aws.amazon.com/compare/the-difference-between-https-and-http/)
+- **Client:** HTTPS provides a secure and encrypted method of plain text communication between client and server, using SSL certificates to authenticate and encrypt data during transfer. The `Render` platform uses SSL certificates natively, in our application this will ensure safe transmission of private data (passwords, email) and ensure authorisation tokens are not directly accessible to any malicious attacks or data breaches [(Amazon, 2025)](https://aws.amazon.com/compare/the-difference-between-https-and-http/)
 - **Server:** Our server layer has the bulk of our methods to enact data security:
   - Security headers via `helmet` to protect against common web vulnerabilities
   - `CORS` configuration to restrict number of trusted domains
@@ -276,7 +277,7 @@ graph LR
     style H fill: red
 ```
 
-Note: `Mongoose` provides application-level schema validation, future development _could_ include the use of MongoDB database-level schema validation as a final defense against malicious or corrupt data which bypasses application checks.
+Note: `Mongoose` provides application-level schema validation, future development _could_ include the use of MongoDB database-level schema validation as a final defence against malicious or corrupt data which bypasses application checks.
 
 ---
 
