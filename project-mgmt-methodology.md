@@ -2,13 +2,50 @@
 
 This section explains the Software Development Methodologies and how we plan to implement them in our MERN Full-Stack project: **The Century Screening Room**.
 
-During the planning phase, we considered our project scope, team size and the need for flexibility across the lifecycle. Although we looked at Scrum, we decided that the dedicated roles (eg. Product Ownere/Scrum Master) wasn't practical for a team of our size. Instead, we decided responsibilities are shared where every team member contributes to backlog refinement, stand-ups, sprint planning and retrospectives.
+During the planning phase, we considered our project scope, team size and the need for flexibility across the lifecycle. Although we looked at Scrum, we decided that the dedicated roles (eg. Product Owner/Scrum Master) wasn't practical for a team of our size. Instead, we decided responsibilities are shared where every team member contributes to backlog refinement, stand-ups, sprint planning and retrospectives.
 
 By combining both Agile for project management with Kanban for task management, this provided us with a balance of structure and flexibility. Agile guides our sprints and retrospectives, while Kanban provides the visual workflow framework that supports those Agile practices.
 
 Together, these methodologies gives us a structured yet adaptable workflow that can evolve across all three phases of the project lifecycle.
 
-*Diagram Figure 1: Agile Across Phases 1 (Planning & Design), 2 (Back-End Development) & 3 (Front-End Development)*
+---
+
+## Agile Project Management Methodology
+
+Agile is an iterative and incremental project management methodology that focuses on delivering value in short, manageable cycles rather than through a single, rigid plan. Its core philosophy emphasises adaptability, collaboration, transparency, and continuous improvement (Atlassian, 2024). Instead of completing all planning upfront, Agile encourages teams to work in small sprints, gather feedback, and refine their approach as requirements evolve.
+
+By prioritising working outcomes over extensive documentation and responding to change over following a fixed plan, Agile enables teams to stay flexible and maintain momentum even in complex or uncertain projects. Practices such as daily stand-ups, sprint reviews, and retrospectives ensure constant communication, while backlog refinement and prioritisation help keep the team aligned on the most valuable tasks.
+
+For our MERN full-stack project, Agile is particularly effective because it supports:
+
+- A small team structure (group of 3) where roles are shared and collaboration is key.
+- An iterative workflow, where we can start with core MVP features and expand in later phases.
+- A focus on continuous feedback, both internally (retrospectives) and externally (future user testing).
+- Adaptability as requirements shift across back-end and front-end phases.
+
+---
+
+### _Diagram Figure 1: Agile Methodology Cycle (iteration, feedback, improvement)_
+
+```mermaid
+flowchart LR
+    A[Plan Sprint] --> B[Implement Tasks]
+    B --> C[Daily Stand-ups<br/>Track Progress]
+    C --> D[Review & QA]
+    D --> E[Retrospective]
+    E --> A
+
+    %% Outline colors only
+    style A fill:#000000,stroke:#1565C0,stroke-width:3px
+    style B fill:#000000,stroke:#2E7D32,stroke-width:3px
+    style C fill:#000000,stroke:#F9A825,stroke-width:3px
+    style D fill:#000000,stroke:#AD1457,stroke-width:3px
+    style E fill:#000000,stroke:#4527A0,stroke-width:3px
+```
+
+---
+
+### _Diagram Figure 2: Agile & Kanban Adaptation Example Across Phases 1 (Planning & Design), 2 (Back-End Development) & 3 (Front-End Development)_
 
 ```mermaid
 flowchart TB
@@ -24,8 +61,7 @@ flowchart TB
   %% Phase 2 row
   subgraph P2[Phase 2: Back-End Dev]
     direction LR
-    beA[+ Testing] --> beB[+ Deployment]
-    beB --> beC[Feature/Bug Labels]
+    beA[+ Testing] --> beB[Feature/Bug Labels]
   end
 
   %% Phase 3 row
@@ -47,38 +83,7 @@ flowchart TB
   class P3 phase3;
 ```
 
-## Agile Project Management Methodology
-
-Agile is an iterative and incremental project management methodology that focuses on delivering value in short, manageable cycles rather than through a single, rigid plan. Its core philosophy emphasises adaptability, collaboration, transparency, and continuous improvement (Atlassian, 2024). Instead of completing all planning upfront, Agile encourages teams to work in small sprints, gather feedback, and refine their approach as requirements evolve.
-
-By prioritising working outcomes over extensive documentation and responding to change over following a fixed plan, Agile enables teams to stay flexible and maintain momentum even in complex or uncertain projects. Practices such as daily stand-ups, sprint reviews, and retrospectives ensure constant communication, while backlog refinement and prioritisation help keep the team aligned on the most valuable tasks.
-
-For our MERN full-stack project, Agile is particularly effective because it supports:
-
-- A small team structure (group of 3) where roles are shared and collaboration is key.
-- An iterative workflow, where we can start with core MVP features and expand in later phases.
-- A focus on continuous feedback, both internally (retrospectives) and externally (future user testing).
-- Adaptability as requirements shift across back-end and front-end phases.
-
 ---
-
-*Diagram Figure 2: Agile Methodology Cycle (iteration, feedback, improvement)*
-
-```mermaid
-flowchart LR
-    A[Plan Sprint] --> B[Implement Tasks]
-    B --> C[Daily Stand-ups<br/>Track Progress]
-    C --> D[Review & QA]
-    D --> E[Retrospective]
-    E --> A
-
-    %% Outline colors only
-    style A fill:#000000,stroke:#1565C0,stroke-width:3px
-    style B fill:#000000,stroke:#2E7D32,stroke-width:3px
-    style C fill:#000000,stroke:#F9A825,stroke-width:3px
-    style D fill:#000000,stroke:#AD1457,stroke-width:3px
-    style E fill:#000000,stroke:#4527A0,stroke-width:3px
-```
 
 ## Agile Core Principles We Apply
 
@@ -108,7 +113,7 @@ Implementation plan of Agile practices include:
 
 ---
 
-*Diagram Figure 3: Continuous Integration Flow*
+### _Diagram Figure 3: Continuous Integration Flow_
 
 ```mermaid
 flowchart LR
@@ -121,7 +126,7 @@ flowchart LR
     F --> G{Approve?}
     G -- No --> D
     G -- Yes --> H[Merge to Main]
-    H --> I[Deploy/Tag Release]
+    H --> I[Tag Release]
 
     %% Styles
     style A fill:#E3F2FD,stroke:#1565C0,stroke-width:2px,color:#000
@@ -137,9 +142,9 @@ flowchart LR
 
 ## How Agile and Kanban Integrate
 
-Agile gives us the cadence (sprints, planning, retros). Kanban (in Trello) provides the visual flow to execute those practices day-to-day.
+Agile gives us the cadence (sprints, planning, retrospectives). Kanban (in Trello) provides the visual flow to execute those practices day-to-day.
 
-*Diagram Figure 4: Agile & Kanban Methodology Core Principles*
+### _Diagram Figure 4: Agile & Kanban Methodology Core Principles_
 
 ```mermaid
 flowchart TB
@@ -179,7 +184,7 @@ flowchart TB
 
 We adopted Agile as our overarching methodology because it was suitable for our team size working on a full-stack project that would require flexibility and regular adjustments.
 
-*Diagram Figure 5: Gantt Project Roadmap - Phases 1, 2 & 3*
+### _Diagram Figure 5: Gantt Project Roadmap - Phases 1, 2 & 3_
 
 ```mermaid
 gantt
@@ -207,7 +212,7 @@ gantt
 - **Sprint goals:** Software architecture and paradigms, methodology, ERDs, wireframes, initial backlog and Definition of Done (DoD).
 - **Retrospective focus:** clarity of scope, rubric alignment, task progress update on team alignments, estimation to manage tasks/workload/prioritisation and timeline projections.
 
-*Diagram Figure 6: Gantt Project Roadmap - Phase 1 Planning*
+### _Diagram Figure 6: Gantt Project Roadmap - Phase 1 Planning_
 
 ```mermaid
 gantt
@@ -232,7 +237,7 @@ gantt
 - **Sprint goals:** CRUD endpoints, validation, error handling, seed data, API docs.
 - **Retrospective focus:** code quality, debugging and testing coverage, PR review quality, CI checks.
 
-*Diagram Figure 7: Gantt Project Roadmap - Phase 2 Back-End Development*
+### _Diagram Figure 7: Gantt Project Roadmap - Phase 2 Back-End Development_
 
 ```mermaid
 gantt
@@ -250,11 +255,11 @@ gantt
 
 ### Phase 3 (Front-End Development)
 
-- **Sprint goals:** UI/UX components, state/data flows, ensure responsiveness and accesible UI design
+- **Sprint goals:** UI/UX components, state/data flows, ensure responsiveness and accessible UI design
 - **Retrospective focus:** usability feedback, user testing, integration issues, ensure responsiveness and accessibility, polish.
 - In Phase 3, we could plan to extend Agile feedback loops beyond retrospectives by incorporating user testing sessions, feeding these insights back into backlog refinement
 
-*Diagram Figure 8: Gantt Project Roadmap - Phase 3 Front-End Development*
+### _Diagram Figure 8: Gantt Project Roadmap - Phase 3 Front-End Development_
 
 ```mermaid
 gantt
@@ -263,7 +268,7 @@ gantt
     axisFormat  %b %d
     section Phase 3: Front-End (A3)
     Core UI Components       :         be1, 2025-10-29, 7d
-    Responsive Compontents   :         be2, after be1, 7d
+    Responsive components   :         be2, after be1, 7d
     Testing and Polishing    :         be3, after be2, 4d
 ```
 
@@ -277,15 +282,15 @@ gantt
 
 1. Define sprint goals aligned with rubric MVPs.
 2. Select tasks cards/user stories into sprint and add acceptance criteria and ownership.
-3. Run daily Slack stand-ups. Example of our standup format:
-    - Yesterday’s work and time spent
-    - Today’s plan
-    - Completion % toward phase goal
-    - Low vs high-priority blockers
+3. Run daily Slack stand-ups. Example of our stand-up format:
+   - Yesterday’s work and time spent
+   - Today’s plan
+   - Completion % toward phase goal
+   - Low vs high-priority blockers
 4. Closed sprint with a retrospective and adjusted for the next cycle.
 5. Repeated the cycle of planning → implementing → reviewing → reflecting.
 
-*Diagram Figure 9: Sprint Planning - Sprint Cycle Week*
+### _Diagram Figure 9: Sprint Planning - Sprint Cycle Week_
 
 ```mermaid
 flowchart LR
@@ -316,28 +321,32 @@ flowchart LR
 **Task:** Create wireframes for the Reel Canon movie list page (for desktop, tablet, and mobile views).
 
 - **Sprint Planning:**
-    - In our sprint planning session, we created a backlog task card in Trello: “Design ReelCanon Wireframes (Desktop + Tablet + Mobile).”
-    - The card included acceptance criterias
-    - Task assigned to a team member with a checklist for each device layout.
-    - Outcome: Drafts in Figma → peer feedback → export PNGs → push to GitHub.
+
+  - In our sprint planning session, we created a backlog task card in Trello: “Design ReelCanon Wireframes (Desktop + Tablet + Mobile).”
+  - The card included acceptance criteria
+  - Task assigned to a team member with a checklist for each device layout.
+  - Outcome: Drafts in Figma → peer feedback → export PNGs → push to GitHub.
 
 - **Kanban Workflow:**
-    - Card moved from Backlog → Sprint Backlog → In Progress during Sprint 2.
-    - Daily Slack stand-up example: *“Yesterday I sketched the mobile layout; today I’ll start on tablet responsive design; no blockers so far.”*
+
+  - Card moved from Backlog → Sprint Backlog → In Progress during Sprint 2.
+  - Daily Slack stand-up example: _“Yesterday I sketched the mobile layout; today I’ll start on tablet responsive design; no blockers so far.”_
 
 - **Review and Feedback (QA):**
-    - Once initial drafts were done in Figma, the card was moved to Review column.
-    - Other team members provided peer feedback (eg. Make hover effect on desktop and consider alternative options on Tablet and Mobile as 'hover' may not work on these devices).
+
+  - Once initial drafts were done in Figma, the card was moved to Review column.
+  - Other team members provided peer feedback (eg. Make hover effect on desktop and consider alternative options on Tablet and Mobile as 'hover' may not work on these devices).
 
 - **Definition of Done (DoD):**
-    - Meeting held to collaborate and reflect and provide feedback for adjustments
-    - Final wireframes were exported and uploaded to GitHub repo.
-    - The card was moved to Done, with the acceptance criteria checked off.
+
+  - Meeting held to collaborate and reflect and provide feedback for adjustments
+  - Final wireframes were exported and uploaded to GitHub repo.
+  - The card was moved to Done, with the acceptance criteria checked off.
 
 - **Retrospective:**
-    - In the sprint retrospective, we noted that defining acceptance criteria at the start made peer review smoother and reduced rework.
+  - In the sprint retrospective, we noted that defining acceptance criteria at the start made peer review smoother and reduced rework.
 
-*Diagram Figure 10: Agile & Kanban Workflow for Wireframe Design (Planning Phase)*
+### _Diagram Figure 10: Agile & Kanban Workflow for Wireframe Design (Planning Phase)_
 
 ```mermaid
 sequenceDiagram
@@ -360,24 +369,26 @@ sequenceDiagram
 
 #### Example 3: CRUD Endpoint Development
 
-**Task:** Implement the (CRUD Route/ example) endpoint to ....
+**Task:** Implement the CRUD Route endpoints
 
 - **Sprint Planning:**
+  - The team will set sprint goals for full CRUD functionality in a controller
 - **Kanban Workflow:**
-    - The card moved from Backlog → Sprint Backlog → In Progress.
-    - Daily Slack stand-up update example: “Yesterday I scaffolded the controller and model, today I’ll add validation logic and write initial tests. No blockers so far.”
+  - The card moved from Backlog → Sprint Backlog → In Progress.
+  - Daily Slack stand-up update example: “Yesterday I scaffolded the controller and model, today I’ll add validation logic and write initial tests. No blockers so far.”
 - **Review and Feedback (QA):**
-    - Once the code is pushed to a feature branch, a Pull Request is opened to review on GitHub
-    - Peer review checked for clarity, naming conventions and testing coverage
+  - Once the code is pushed to a feature branch, a Pull Request is opened to review on GitHub
+  - Peer review checked for clarity, naming conventions and testing coverage
 - **Definition of Done (DoD):**
-    - Endpoint passed local testing via Insomnia/Bruno
-    - PR approved and merged into the main branch
-    - Update API documentation with example request/response
-    - Card moved to Done after all acceptance criteria met
+  - Endpoint passed local testing via Insomnia/Bruno
+  - PR approved and merged into the main branch
+  - Update API documentation with example request/response
+  - Card moved to Done after all acceptance criteria met
 - **Retrospective:**
-    - Future example...
+  - Once code is working, we will review and apply DRY principles
+  - We will examine what can be re-used in other CRUD functionality to streamline development
 
-*Diagram Figure 11: Agile & Kanban Workflow for CRUD Endpoint Development (Back-End Phase)*
+### _Diagram Figure 11: Agile & Kanban Workflow for CRUD Endpoint Development (Back-End Phase)_
 
 ```mermaid
     sequenceDiagram
@@ -404,30 +415,30 @@ sequenceDiagram
 **Task:** Build the “Movie Card” component for displaying movies in the Reel Canon list.
 
 - **Sprint Planning:**
-    - Create Trello Card: “Build Movie Card Component (responsive)”
-    - Tasks examples:
-        - Component creation
-        - CSS Styling
-        - Unit testing
-    - Acceptance criteria example:
-        - Desktop: grid view with poster images, 'hover effect' shows description
-        - Tablet: vertical scrolling grid layout with 'tap to expand' details
-        - Mobile: compact cards with 'tap to reveal' overlays for info and rating
+  - Create Trello Card: “Build Movie Card Component (responsive)”
+  - Tasks examples:
+    - Component creation
+    - CSS Styling
+    - Unit testing
+  - Acceptance criteria example:
+    - Desktop: grid view with poster images, 'hover effect' shows description
+    - Tablet: vertical scrolling grid layout with 'tap to expand' details
+    - Mobile: compact cards with 'tap to reveal' overlays for info and rating
 - **Kanban Workflow:**
-    - The card moved from Backlog → Sprint Backlog → In Progress.
-    - Daily Slack stand-up update example: “Yesterday I set up the component scaffold, today I’ll integrate test for hover/tap states. One blocker is deciding final font sizing for mobile.”
+  - The card moved from Backlog → Sprint Backlog → In Progress.
+  - Daily Slack stand-up update example: “Yesterday I set up the component scaffold, today I’ll integrate test for hover/tap states. One blocker is deciding final font sizing for mobile.”
 - **Review and Feedback (QA):**
-    - Commit code to a feature branch, then open PR for review.
-    - Peer feedback on styling consistency and accessibility (eg. ARIA labels for screen readers).
-    - Make any necessary adjustments before merging.
+  - Commit code to a feature branch, then open PR for review.
+  - Peer feedback on styling consistency and accessibility (eg. ARIA labels for screen readers).
+  - Make any necessary adjustments before merging.
 - **Definition of Done (DoD):**
-    - Component tested locally in dev build across desktop, tablet, and mobile breakpoints.
-    - Peer-reviewed and merged into main.
-    - Wireframes updated to reflect final UI alignment.
+  - Component tested locally in dev build across desktop, tablet, and mobile breakpoints.
+  - Peer-reviewed and merged into main.
+  - Wireframes updated to reflect final UI alignment.
 - **Retrospective:**
-    - Future Example: Discussion about breakpoints criteria to adopt for future responsive components.
+  - Future Example: Discussion about breakpoints criteria to adopt for future responsive components.
 
-*Diagram Figure 12: Agile & Kanban Flow for Front-End Component Development (Movie Card Example)*
+_Diagram Figure 12: Agile & Kanban Flow for Front-End Component Development (Movie Card Example)_
 
 ```mermaid
 flowchart TB
@@ -442,21 +453,20 @@ flowchart TB
 
 ## Tools/Technologies Used
 
-| Tools/Platforms     | Source             | Purpose                       |
-|-------------------|--------------------|---------|
-| **Kanban Board**  | [Trello](https://trello.com/) | Kanban board for task management and visualisation of workflow |
-| **Communication** | [Slack](https://slack.com/) | Communication for team collaboration, quick communications, daily standups and retrorespectives |
+| Tools/Platforms                     | Source                                                                                   | Purpose                                                                                                                                                                                                                |
+| ----------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Kanban Board**                    | [Trello](https://trello.com/)                                                            | Kanban board for task management and visualisation of workflow                                                                                                                                                         |
+| **Communication**                   | [Slack](https://slack.com/)                                                              | Communication for team collaboration, quick communications, daily stand-ups and retrospectives                                                                                                                         |
 | **Documentation & Version Control** | [GitHub Repository](https://github.com/CoderAcademy-DEV-MERN-Group/DEV1003-Assessment01) | Central repository for documentation, codebase and version control. Working off individual feature branches and Pull Requests to review documentation and codebase. Tracked changes and accessible for our whole team. |
-| **Design/Wireframes** | [Figma](https://figma.com/) | Designing wireframes and UX/UI design for across difference devices (responsive for Mobile + Tablet + Desktop) |
-| **API Testing**   | [Insomnia](https://insomnia.rest/) / [Bruno](https://www.usebruno.com/) | API Endpoint Testing |
-| **Deployment** | [Deployment platform (eg Render)] | Deployment platform and services to support staging and production environments |
+| **Design/Wireframes**               | [Figma](https://figma.com/)                                                              | Designing wireframes and UX/UI design for across difference devices (responsive for Mobile + Tablet + Desktop)                                                                                                         |
+| **API Testing**                     | [Insomnia](https://insomnia.rest/) / [Bruno](https://www.usebruno.com/)                  | API Endpoint Testing                                                                                                                                                                                                   |
 
 ## References
 
-| Source                | Purpose                                    |
-|-----------------------|--------------------------------------------|
-| [Atlassian: What is Agile Project Management](https://www.atlassian.com/agile/project-management) | Detailed overview and guidance on Agile Project Management |
-| [Atlassian: Agile Coach](https://www.atlassian.com/agile) | Agile principles, sprints, stand-ups and guide to align our approach with industry standards and best practices. |
-| [Atlassian: Kanban Principles](https://www.atlassian.com/agile/project-management/kanban-principles) | Explains the core Kanban principles and supporting practices |
-| [Miro Blog: Scrum vs. Kanban Boards](https://miro.com/blog/scrum-kanban-boards-differences) | Comparison of Scrum vs Kanban boards |
-| [Trello Guide](https://trello.com/guide) | Trello documentation for setting up and optimising Kanban board setup. |
+| Source                                                                                               | Purpose                                                                                                          |
+| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [Atlassian: What is Agile Project Management](https://www.atlassian.com/agile/project-management)    | Detailed overview and guidance on Agile Project Management                                                       |
+| [Atlassian: Agile Coach](https://www.atlassian.com/agile)                                            | Agile principles, sprints, stand-ups and guide to align our approach with industry standards and best practices. |
+| [Atlassian: Kanban Principles](https://www.atlassian.com/agile/project-management/kanban-principles) | Explains the core Kanban principles and supporting practices                                                     |
+| [Miro Blog: Scrum vs. Kanban Boards](https://miro.com/blog/scrum-kanban-boards-differences)          | Comparison of Scrum vs Kanban boards                                                                             |
+| [Trello Guide](https://trello.com/guide)                                                             | Trello documentation for setting up and optimising Kanban board setup.                                           |
