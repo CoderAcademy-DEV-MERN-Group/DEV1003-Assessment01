@@ -92,7 +92,6 @@ The following high-level examples outline feature areas derived from the user st
 
 Future documentation will expand on database design, endpoint mapping, and user-interface components aligned with the MERN stack. These feature areas will inform the next iteration of our Agile sprint backlog, connecting user needs to technical implementation in the MERN application.
 
-
 | **Epic / Theme**                  | **Linked Feature / Module** | **Linked Persona** | **Goal / Outcome**                                                                                                   |
 | --------------------------------- | --------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
 | **Competition and Leaderboards**  | *Reel Leaders*              | The Competitor     | Enable competitive users to compare Reel Scores and rankings filtered by genre.                                      |
@@ -104,10 +103,12 @@ Future documentation will expand on database design, endpoint mapping, and user-
 
 ## References
 
-- Visual Paradigm: [What is User Story?](https://www.visual-paradigm.com/guide/agile-software-development/what-is-user-story/)
+**Note:**
+The following sources were used to inform best practices and examples for Agile user story documentation, personas, and feature mapping.
 
-- Justinmind: [20 Useful user story examples and best practices](https://www.justinmind.com/blog/examples-user-story-best-practices/)
-
-- Roman Pichler: [From Personas to User Stories](https://www.romanpichler.com/blog/personas-epics-user-stories/)
-
-- Atlassian: [User Stories | Examples and Template](https://www.atlassian.com/agile/project-management/user-stories)
+| References                                                                                                                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Pelegrin, J. (2024). _20 Useful user story examples to get you started_. Justinmind. Available at: <https://www.justinmind.com/blog/examples-user-story-best-practices/> (Accessed 1 Sep. 2025). |
+| Pichler, R. (2014). _From Personas to User Stories_. Roman Pichler. Available at: <https://www.romanpichler.com/blog/personas-epics-user-stories/> (Accessed: 1 Oct. 2025).                     |
+| Rehkopf, M. (2025). _User stories with examples and a template_. Atlassian. Available at: https://www.atlassian.com/agile/project-management/user-stories (Accessed 2 Oct. 2025)                 |
+| Visual Paradigm. (2025). _What is User Story?_. Visual Paradigm. Available at: <https://www.visual-paradigm.com/guide/agile-software-development/what-is-user-story/> (Accessed: 30 Sep. 2025).   |
