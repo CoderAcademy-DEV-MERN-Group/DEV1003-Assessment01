@@ -36,7 +36,7 @@ For example, if you have a coffee making application:
 
 - Processes abstracted from the user in hidden methods:
   - "Boil water"
-  - "Measure cofee beans"
+  - "Measure coffee beans"
   - "Adjust grind setting to coarse"
   - "Grind coffee"
   - "Add boiling water to coffee pot"
@@ -104,7 +104,7 @@ In our project:
 
 Encapsulation bundles data and methods which operate on the data within a single class or object, while restricting access to some of the objects components. This is achieved through the implementation of private properties and other modifiers.
 
-Please see the diagram below to illustrate this concept:
+**_Diagram Figure 1: Encapsulation in our application (private user data)_**
 
 ```mermaid
 classDiagram
@@ -177,9 +177,9 @@ In our project:
 
 ### Inheritance
 
-Inheritance is the passing of properties and methods from an existing _parent_ object to a new related _child_ object. This is helpful for almost all programming projects, as it promotes code re-use, keeping codeblocks DRY, and forms logical heirarchy for related objects.
+Inheritance is the passing of properties and methods from an existing _parent_ object to a new related _child_ object. This is helpful for almost all programming projects, as it promotes code re-use, keeping codeblocks DRY, and forms logical hierarchy for related objects.
 
-Please see the below diagram to illustrate the concept of inheritance:
+**_Diagram Figure 2: Class based inheritance_**
 
 ```mermaid
 classDiagram
@@ -247,7 +247,7 @@ console.log(myDog.name); // "Rex" (inherited from Animal)
 console.log(myDog.bark()); // "Woof!" (Dog's own method)
 const myCat = new Cat("Fluffy", 7, "Devon Rex");
 console.log(myCat.age); // 7 (inherited from Animal)
-console.log(myCat.purr()); // "Purrr..." (Cat's own method)
+console.log(myCat.purr()); // "Purrrr..." (Cat's own method)
 ```
 
 Inheritance allows classes to share attributes, properties and methods from their parent class.
@@ -328,14 +328,14 @@ class Cat extends Animal {
 const animals = [new Dog(), new Cat()];
 
 // Loop through the array of new objects, and call the speak() method for each
-animals.forEach((animal) => console.log(animal.speak())); // Output: "Woof!" then "Meow!" - same method, different behavior
+animals.forEach((animal) => console.log(animal.speak())); // Output: "Woof!" then "Meow!" - same method, different behaviour
 ```
 
 Polymorphism lets different classes implement the same methods but behave differently.
 
 In our project:
 
-- A `FormInput` React component can render differently depending on whehter it's a login field, a genre selector, or a friend search field, but all share a single interface
+- A `FormInput` React component can render differently depending on whether it's a login field, a genre selector, or a friend search field, but all share a single interface
 - A `ReelCard` component in the Reel Canon can represent the same movie object in multiple states. For example, movie cards will have a **watched** and **unwatched** state, with a change in rendered display based on these states. Watched movies will provide users with glow effects and the movie poster, whilst unwatched movies will be rendered as cards with Title, Year and Genre details. Both will respond to `onClick` and `onHover`, but will behave differently depending on the **watched** or **unwatched** state.
 
 ---

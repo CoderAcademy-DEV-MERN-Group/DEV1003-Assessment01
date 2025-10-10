@@ -4,13 +4,14 @@ Client-Server architecture has been a standard of web communication since the la
 In modern web applications, this model operates in a layered approach: a user enters a URL into their device's browser (client), the client contacts a DNS server to convert the URL to an IP, the client sends an HTTP request to the server at that IP address, the server responds (with HTML, CSS, Javascript, media etc), and finally the client renders the response [(GeeksForGeeks, 2025)](https://www.geeksforgeeks.org/system-design/client-server-model/). That's already two layers of client server architecture in action: DNS resolution, followed by HTTP communication.  
 Developers use this model to distribute data and features, allowing for quick execution and display of web content, and for authorisation and validation to ensure data is secure and correct.
 
-See below diagram for typical client server interaction:
+**_Diagram Figure 1: Client Server Architecture In Action (Client -> DNS Server, Client -> Web Server)_**
 
 ```mermaid
 sequenceDiagram
   actor User as User
   participant WS as Web Server
-  participant DNS as DNS Server  User ->> DNS: User Request for Domain
+  participant DNS as DNS Server
+  User ->> DNS: User Request for Domain
   DNS -->> User: Response of IP Web Server
   User ->> WS: Makes HTTP request to IP
   WS -->> User: HTTP Response with data files (HTML, CSS, JS)
@@ -21,6 +22,8 @@ Our application implements this pattern through a three-tiered client-server arc
 - **Tier 1 (Presentation):** `React` is used for the client front-end framework
 - **Tier 2 (Application):** `Express` is used as the server for business logic and database manipulation
 - **Tier 3 (Data):** MongoDB is the database layer, with `Mongoose` providing validation and data modelling
+
+**_Diagram Figure 2: Three Tiered Client Server Architecture Model (React, Express, MongoDB)_**
 
 ```mermaid
 graph TD
@@ -44,9 +47,19 @@ Client-server communication, in general, occurs through the use of standardised 
 
 Other HTTP verbs which are less often used, or execute advanced tasks are: `HEAD`, `TRACE`, `OPTIONS` and `CONNECT` [(Mozilla Developer Network, 2025)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview).
 
-Headers are also used to carry metadata such as authentication and authorisation, content type, caching, and any other useful information not necessarily included in the request/response body [(Postman, 2025)](https://blog.postman.com/what-are-http-headers/).
+Headers are also used to carry metadata such as authentication and authorisation, content type, caching, and any other useful information not necessarily included in the request/response body [(Postman, 2023)](https://blog.postman.com/what-are-http-headers/).
 
-Server-side middleware is used to act on requests from the client, and manipulate database records. Responses are then sent back to the client.
+Server-side middleware is used to act on requests from the client, and manipulate database records. Responses are then sent back to the client, with additional status codes to indicate the result of the request. Common status codes in our application include:
+
+- `200 OK` - Success
+- `201 Created` - Resource successfully created
+- `400 Bad Request` - Client-side error (e.g. invalid input)
+- `401 Unauthorized` - Authentication required or failed
+- `403 Forbidden` - User is authenticated but access is not permitted
+- `404 Not Found` - Resource not found
+- `500 Internal Server Error` - Unexpected server-side error
+
+This two way communication allows the client and server to work together to gracefully handle all requests and responses.
 
 In our application:
 
@@ -67,14 +80,14 @@ POST /api/ratings { movieId: 456, rating: 5 }
 POST /api/friends { friendId: 789 }
 
 // PATCH - Update user profile and scratch progress
-PATCH /api/users/123 { favoriteGenres: ['drama'] }
+PATCH /api/users/123 { favouriteGenres: ['drama'] }
 PATCH /api/progress/456 { isScratched: true }
 
 // DELETE - Remove friends and user data
 DELETE /api/friends/789
 ```
 
-The below diagram shows the typical communication flow in our application:
+**\_\_**Diagram Figure 3: A typical communication flow in our application (React, Express, Mongoose, MongoDB)**\_\_**
 
 ```mermaid
 ---
@@ -101,14 +114,14 @@ sequenceDiagram
 
 ## Data Distribution
 
-Data distribution separates data between the client and the server, to optimise performance, scalability, and security [(Zealousys, 2025)](https://www.zealousys.com/blog/client-server-architecture/). Client-side caching allows for rapid access to previously loaded content, while server side data storage allows for robust validation and sanitisation, secure storage of encrypted private data, as well as any complex aggregations and business logic needed to be performed by middleware. A hybrid approach allows for smooth user experience and optimum performance [(Sharma K, 2025)](https://medium.com/@kumud.sharma.0206/server-side-caching-vs-client-side-caching-a-system-design-perspective-cf2ebae73c42).
+Data distribution separates data between the client and the server, to optimise performance, scalability, and security [(Zealousys, 2023)](https://www.zealousys.com/blog/client-server-architecture/). Client-side caching allows for rapid access to previously loaded content, while server side data storage allows for robust validation and sanitisation, secure storage of encrypted private data, as well as any complex aggregations and business logic needed to be performed by middleware. A hybrid approach allows for smooth user experience and optimum performance [(Sharma K, 2025)](https://medium.com/@kumud.sharma.0206/server-side-caching-vs-client-side-caching-a-system-design-perspective-cf2ebae73c42).
 
 In general data distribution looks like:
 
 - **Client:** Temporary data, cached assets, authorisation/authentication tokens, user preferences, UI states and modals (generally overlay or pop ups)
 - **Server:** Persistent data, secure credentials, logic dependent data
 
-A diagram of data distribution in our application:
+**_Diagram Figure 4: A diagram of data distribution in our application_**
 
 ```mermaid
 graph TD
@@ -145,7 +158,7 @@ Data security will be implemented in our application across several layers of ou
 
 **Security Benefits:** As our application is a three-tiered system, this allows us three layers of security measures to prevent risk to data. The separation provides natural breach security, as a compromise in any one layer doesn't automatically grant access to others:
 
-- **Client:** HTTPS provides a secure and encrypted method of plain text communication between client and server, using SSL certificates to authenticate and encrypt data during transfer. The `Render` platform uses SSL certifactes natively, in our application this will ensure safe transmission of private data (passwords, email) and ensure authorisation tokens are not directly accessible to any malicious attacks or data breaches [(Amazon, 2025)](https://aws.amazon.com/compare/the-difference-between-https-and-http/)
+- **Client:** HTTPS provides a secure and encrypted method of plain text communication between client and server, using SSL certificates to authenticate and encrypt data during transfer. The `Render` platform uses SSL certificates natively, in our application this will ensure safe transmission of private data (passwords, email) and ensure authorisation tokens are not directly accessible to any malicious attacks or data breaches [(Amazon, 2025)](https://aws.amazon.com/compare/the-difference-between-https-and-http/)
 - **Server:** Our server layer has the bulk of our methods to enact data security:
   - Security headers via `helmet` to protect against common web vulnerabilities
   - `CORS` configuration to restrict number of trusted domains
@@ -164,7 +177,7 @@ Feature distribution depends on your chosen data distribution model, and is esse
 Cached client side data enables faster loading of previously requested data, UI states are stored client side as they are temporary and user dependent (EG. what is open, what has been viewed, what has been entered in a form which hasn't been submitted), authentication/authorisation and session data is stored client side to allow persistent access to protected routes/endpoints [(GeeksforGeeks, 2025)](https://www.geeksforgeeks.org/system-design/server-side-caching-and-client-side-caching/).  
 Server side data storage enables complex business logic and aggregations, secure storage, validation and authorisation/authentication of private data, and enables functionality of any shared or relationship dependent data (EG. friend requests, aggregated results, financial transactions).
 
-Feature distribution in our application:
+**_Diagram Figure 4: Feature distribution in our application_**
 
 ```mermaid
 graph TD
@@ -188,7 +201,7 @@ graph TD
 - **Client:** JWT Tokens held for access authorisation, movie metadata stored for faster loading, UI states stored (EG. `isWatched()` is user dependent), UI presentation data is stored
 - **Server:** Hashed credentials are stored for increased security, ReelProgress is stored to be used for aggregate functions and leaderboards, friend relationships are stored due to being directly connected to Users and to Comparison lists, cached external API data is stored to ensure faster loads to users of our application
 
-Note: Authentication/authorisation in our application uses client-side JWT storage for efficient development, with plans to implement more secure httpOnly cookies for production deployment [(Matharu M, 2025)](https://meenumatharu.medium.com/when-not-to-use-local-storage-risks-examples-and-secure-alternatives-de541fed56d2).
+Note: Authentication/authorisation in our application uses client-side JWT storage for efficient development, with plans to implement more secure httpOnly cookies for production deployment [(Matharu M, 2024)](https://meenumatharu.medium.com/when-not-to-use-local-storage-risks-examples-and-secure-alternatives-de541fed56d2).
 
 ---
 
@@ -199,7 +212,9 @@ Authentication and authorisation are related but distinct processes:
 - **Authentication:** _"Who is this entity"_. Handles identity verification of entities (users, devices or machines)
 - **Authorisation:** _"What can this entity do?"_ Occurs **after** authentication, determining permissions by denying or granting access to protected routes, functions or resources
 
-Authentication in our application means checking a user's email and password against hashed values, and issuing JWT tokens on success:
+Authentication in our application means checking a user's email and password against hashed values, and issuing JWT tokens on success.
+
+**_Diagram Figure 5: Authentication in action in our application (Bcrypt, JWT)_**
 
 ```mermaid
 sequenceDiagram
@@ -223,7 +238,9 @@ sequenceDiagram
 - **Client:** Sends credentials to the server over secure HTTPS, receives JWT access and refresh tokens and stores them
 - **Server:** Validates credentials using Bcrypt and specified salting values, uses securely stored custom environment variables (`JWT secret`) to generate JWT tokens, sends created tokens back to the client
 
-Authorisation in our application determines which routes and functions are accessible to users. Tokens generated during authentication are attached to requests (through `Bearer Token` headers), and the server checks their validity, expiry, and any role based privileges before granting access:
+Authorisation in our application determines which routes and functions are accessible to users. Tokens generated during authentication are attached to requests (through `Bearer Token` headers), and the server checks their validity, expiry, and any role based privileges before granting access.
+
+**_Diagram Figure 6: Authorisation in practice in our application (JWT headers, protected routes)_**
 
 ```mermaid
 sequenceDiagram
@@ -258,7 +275,7 @@ Validation in our application:
 - **Client:** `React` validation ensures that all required fields are submitted and correct format and complexity (EG. email must be correct format `email@email.com`, passwords must be sufficiently complex `VeryComplexPassword1999!`)
 - **Server:** `Mongoose` validation ensures all data is valid and secure, handles errors due to conflict across multiple records (EG. `unique`, `nullable` requirements), ensures private data is never exposed through the use of strict `Mongoose` Schema
 
-A typical validation flow in our application is pictured below:
+**_Diagram Figure 7: Validation in action in our application (React, Express, Mongoose)_**
 
 ```mermaid
 graph LR
@@ -276,7 +293,7 @@ graph LR
     style H fill: red
 ```
 
-Note: `Mongoose` provides application-level schema validation, future development _could_ include the use of MongoDB database-level schema validation as a final defense against malicious or corrupt data which bypasses application checks.
+Note: `Mongoose` provides application-level schema validation, future development _could_ include the use of MongoDB database-level schema validation as a final defence against malicious or corrupt data which bypasses application checks.
 
 ---
 
@@ -290,11 +307,11 @@ Note: `Mongoose` provides application-level schema validation, future developmen
 | Das, S. (2025). _Client-Server Communication: A Deep Dive_. LinkedIn. Available at: <https://www.linkedin.com/pulse/client-server-communication-deep-dive-sandip-das-zljcc/> (Accessed: 29 Sep. 2025)                                                            |
 | Mozilla Developer Network. (2025). _Client-Server Overview_. MDN Web Docs. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview> (Accessed: 29 Sep. 2025)                     |
 | Postman. (2023). _What are HTTP headers?_. Postman Blog. Available at: <https://blog.postman.com/what-are-http-headers/> (Accessed: 29 Sep. 2025)                                                                                                                |
-| Zealousys. (2024). _Client-Server Architecture_. Zealousys Blog. Available at: <https://www.zealousys.com/blog/client-server-architecture/> (Accessed: 30 Sep. 2025)                                                                                             |
+| Zealousys. (2023). _Client-Server Architecture_. Zealousys Blog. Available at: <https://www.zealousys.com/blog/client-server-architecture/> (Accessed: 30 Sep. 2025)                                                                                             |
 | Sharma, K. (2025). _Server-Side Caching vs Client-Side Caching_. Medium. Available at: <https://medium.com/@kumud.sharma.0206/server-side-caching-vs-client-side-caching-a-system-design-perspective-cf2ebae73c42> (Accessed: 29 Sep. 2025)                      |
 | Amazon (2025). _HTTP vs HTTPS_ - Difference Between Transfer Protocols - AWS. Amazon Web Services, Inc. Available at: <https://aws.amazon.com/compare/the-difference-between-https-and-http/> (Accessed 3 Oct. 2025)                                             |
 | Das, A. (2025). _6 Ways to Prevent MongoDB Injection Attacks_. Medium. Available at: <https://systemweakness.com/6-ways-to-prevent-mongodb-injection-attacks-7e9021040c12> (Accessed 3 Oct. 2025)                                                                |
 | GeeksforGeeks. (2025). _Server-side Caching and Client-side Caching_. Available at: <https://www.geeksforgeeks.org/system-design/server-side-caching-and-client-side-caching/#what-is-clientside-caching> (Accessed: 19 Sep. 2025)                               |
-| Matharu, M. (2025). _When Not to Use Local Storage: Risks, Examples and Secure Alternatives_. Medium. Available at: <https://meenumatharu.medium.com/when-not-to-use-local-storage-risks-examples-and-secure-alternatives-de541fed56d2> (Accessed: 30 Sep. 2025) |
+| Matharu, M. (2024). _When Not to Use Local Storage: Risks, Examples and Secure Alternatives_. Medium. Available at: <https://meenumatharu.medium.com/when-not-to-use-local-storage-risks-examples-and-secure-alternatives-de541fed56d2> (Accessed: 30 Sep. 2025) |
 | Mozilla Developer Network. (2025). _Form validation_. MDN Web Docs. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation> (Accessed: 19 Sep. 2025)                                                     |
 | Kumar, V. (2024). _Mongoose_. Dev.to. Available at: <https://dev.to/vjygour/mongoose-31jc> (Accessed: 30 Sep. 2025)                                                                                                                                              |

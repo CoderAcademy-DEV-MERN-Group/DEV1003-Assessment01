@@ -2,9 +2,9 @@
 
 ## Model-View-Controller
 
-Our MERN Stack project will be utilising a Model-View-Controller (MVC) architecture. **React** will be used for views, **Express** will be our controller, and **Mongoose** will handle our models and interact with our **MongoDB** database. By utilising the "separation of concerns" of the applications business logic and display, MVC architecture allows for parallel development, and more granular maintenance.
+Our MERN Stack project will be utilising a Model-View-Controller (MVC) architecture. `React` will be used for views, `Express` will be our controller, and `Mongoose` will handle our models and interact with our `MongoDB` database. By utilising the "separation of concerns" of the applications business logic and display, MVC architecture allows for parallel development, and more granular maintenance.
 
-An illustration of a general MVC flow is below:
+**_Diagram Figure 1: An illustration of Model, View, Controller architecture pattern_**
 
 ```mermaid
 graph TD
@@ -13,7 +13,9 @@ graph TD
     C -->|Manipulates| M
 ```
 
-A slightly more detailed version with respect to web architecture:
+In regards to web applications, there is a little further detail we can delve into. The diagram below illustrates further detail!
+
+**_Diagram Figure 2: Model, View, Controller in web applications_**
 
 ```mermaid
 sequenceDiagram
@@ -40,7 +42,7 @@ The stack flow of our project is:
 - Mongoose ODM: Interfaces with MongoDB to manage data models (Model)
 - React: Renders the user interface (View/Client layer)
 
-This project specific flow is illustrated below:
+**_Diagram Figure 3: Project specific Model, View, Controller flow_**
 
 ```mermaid
 graph LR
