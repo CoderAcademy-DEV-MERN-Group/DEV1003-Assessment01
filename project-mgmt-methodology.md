@@ -6,7 +6,7 @@ During the planning phase, we considered our project scope, team size and the ne
 
 By combining both Agile for project management with Kanban for task management, this provided us with a balance of structure and flexibility. Agile guides our sprints and retrospectives, while Kanban provides the visual workflow framework that supports those Agile practices.
 
-Together, these methodologies gives us a structured yet adaptable workflow that can evolve across all three phases of the project lifecycle.
+Together, these methodologies give us a structured yet adaptable workflow that can evolve across all three phases of the project lifecycle.
 
 ---
 
@@ -25,7 +25,7 @@ For our MERN full-stack project, Agile is particularly effective because it supp
 
 ---
 
-### _Diagram Figure 1: Agile Methodology Cycle (iteration, feedback, improvement)_
+_Diagram Figure 1: Agile Methodology Cycle (iteration, feedback, improvement)_
 
 ```mermaid
 flowchart LR
@@ -45,7 +45,7 @@ flowchart LR
 
 ---
 
-### _Diagram Figure 2: Agile & Kanban Adaptation Example Across Phases 1 (Planning & Design), 2 (Back-End Development) & 3 (Front-End Development)_
+_Diagram Figure 2: Agile & Kanban Adaptation Example Across Phases 1 (Planning & Design), 2 (Back-End Development) & 3 (Front-End Development)_
 
 ```mermaid
 flowchart TB
@@ -113,7 +113,7 @@ Implementation plan of Agile practices include:
 
 ---
 
-### _Diagram Figure 3: Continuous Integration Flow_
+_Diagram Figure 3: Continuous Integration Flow_
 
 ```mermaid
 flowchart LR
@@ -144,7 +144,7 @@ flowchart LR
 
 Agile gives us the cadence (sprints, planning, retrospectives). Kanban (in Trello) provides the visual flow to execute those practices day-to-day.
 
-### _Diagram Figure 4: Agile & Kanban Methodology Core Principles_
+_Diagram Figure 4: Agile & Kanban Methodology Core Principles_
 
 ```mermaid
 flowchart TB
@@ -184,7 +184,7 @@ flowchart TB
 
 We adopted Agile as our overarching methodology because it was suitable for our team size working on a full-stack project that would require flexibility and regular adjustments.
 
-### _Diagram Figure 5: Gantt Project Roadmap - Phases 1, 2 & 3_
+_Diagram Figure 5: Gantt Project Roadmap - Phases 1, 2 & 3_
 
 ```mermaid
 gantt
@@ -212,7 +212,7 @@ gantt
 - **Sprint goals:** Software architecture and paradigms, methodology, ERDs, wireframes, initial backlog and Definition of Done (DoD).
 - **Retrospective focus:** clarity of scope, rubric alignment, task progress update on team alignments, estimation to manage tasks/workload/prioritisation and timeline projections.
 
-### _Diagram Figure 6: Gantt Project Roadmap - Phase 1 Planning_
+_Diagram Figure 6: Gantt Project Roadmap - Phase 1 Planning_
 
 ```mermaid
 gantt
@@ -237,7 +237,7 @@ gantt
 - **Sprint goals:** CRUD endpoints, validation, error handling, seed data, API docs.
 - **Retrospective focus:** code quality, debugging and testing coverage, PR review quality, CI checks.
 
-### _Diagram Figure 7: Gantt Project Roadmap - Phase 2 Back-End Development_
+_Diagram Figure 7: Gantt Project Roadmap - Phase 2 Back-End Development_
 
 ```mermaid
 gantt
@@ -259,7 +259,7 @@ gantt
 - **Retrospective focus:** usability feedback, user testing, integration issues, ensure responsiveness and accessibility, polish.
 - In Phase 3, we could plan to extend Agile feedback loops beyond retrospectives by incorporating user testing sessions, feeding these insights back into backlog refinement
 
-### _Diagram Figure 8: Gantt Project Roadmap - Phase 3 Front-End Development_
+_Diagram Figure 8: Gantt Project Roadmap - Phase 3 Front-End Development_
 
 ```mermaid
 gantt
@@ -290,7 +290,7 @@ gantt
 4. Closed sprint with a retrospective and adjusted for the next cycle.
 5. Repeated the cycle of planning → implementing → reviewing → reflecting.
 
-### _Diagram Figure 9: Sprint Planning - Sprint Cycle Week_
+_Diagram Figure 9: Sprint Planning - Sprint Cycle Week_
 
 ```mermaid
 flowchart LR
@@ -346,7 +346,7 @@ flowchart LR
 - **Retrospective:**
   - In the sprint retrospective, we noted that defining acceptance criteria at the start made peer review smoother and reduced rework.
 
-### _Diagram Figure 10: Agile & Kanban Workflow for Wireframe Design (Planning Phase)_
+_Diagram Figure 10: Agile & Kanban Workflow for Wireframe Design (Planning Phase)_
 
 ```mermaid
 sequenceDiagram
@@ -388,7 +388,7 @@ sequenceDiagram
   - Once code is working, we will review and apply DRY principles
   - We will examine what can be re-used in other CRUD functionality to streamline development
 
-### _Diagram Figure 11: Agile & Kanban Workflow for CRUD Endpoint Development (Back-End Phase)_
+_Diagram Figure 11: Agile & Kanban Workflow for CRUD Endpoint Development (Back-End Phase)_
 
 ```mermaid
     sequenceDiagram
@@ -458,7 +458,7 @@ flowchart TB
 | **Kanban Board**                    | [Trello](https://trello.com/)                                                            | Kanban board for task management and visualisation of workflow                                                                                                                                                         |
 | **Communication**                   | [Slack](https://slack.com/)                                                              | Communication for team collaboration, quick communications, daily stand-ups and retrospectives                                                                                                                         |
 | **Documentation & Version Control** | [GitHub Repository](https://github.com/CoderAcademy-DEV-MERN-Group/DEV1003-Assessment01) | Central repository for documentation, codebase and version control. Working off individual feature branches and Pull Requests to review documentation and codebase. Tracked changes and accessible for our whole team. |
-| **Design/Wireframes**               | [Figma](https://figma.com/)                                                              | Designing wireframes and UX/UI design for across difference devices (responsive for Mobile + Tablet + Desktop)                                                                                                         |
+| **Design/Wireframes**               | [Figma](https://figma.com/)                                                              | Designing wireframes and UX/UI design for across different devices (responsive for Mobile + Tablet + Desktop)                                                                                                          |
 | **API Testing**                     | [Insomnia](https://insomnia.rest/) / [Bruno](https://www.usebruno.com/)                  | API Endpoint Testing                                                                                                                                                                                                   |
 
 ## References
