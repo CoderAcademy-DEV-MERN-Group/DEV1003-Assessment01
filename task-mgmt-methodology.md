@@ -1,6 +1,6 @@
 # Kanban Task Management Methodology
 
-We chose Kanban as our Task management Methodology as it provides a visual system for tracking progress, limiting work in progress (WIP), and maintaining a continuous delivery flow. Kanban helps teams visualise workflow, manage priorities, and adapt as requirements change. Work in progress (WIP) limits help maintain focus and prevent overload, while visible progress supports collaboration and shared responsibility across all project phases [Atlassian, 2025](https://www.atlassian.com/agile/project-management/kanban-principles).
+We chose Kanban as our Task management Methodology as it provides a visual system for tracking progress, limiting work in progress (WIP), and maintaining a continuous delivery flow. Kanban helps teams visualise workflow, manage priorities, and adapt as requirements change. Work in progress (WIP) limits help maintain focus and prevent overload, while visible progress supports collaboration and shared responsibility across all project phases [Atlassian, 2025: 4 Kanban Principles for Agile Project Management](https://www.atlassian.com/agile/project-management/kanban-principles).
 
 This makes it especially effective for our small team to stay organised and aligned while working in a continuous flow.
 
@@ -15,11 +15,11 @@ This makes it especially effective for our small team to stay organised and alig
 
 ### Agile Integration with Kanban
 
-Our workflow integrates Agile as the overarching Project Management Methodology and Kanban as the Task Management Methodology. Kanban provides the visual structure that makes our Agile process tangible. Together, they provide a balance of structure with adaptability and provide our team with a clear framework for iterative planning, collaboration and visual task tracking while supporting feedback-driven iteration and continuous improvement [Atlassian, 2025](https://www.atlassian.com/agile).
+Our workflow integrates Agile as the overarching Project Management Methodology and Kanban as the Task Management Methodology. Kanban provides the visual structure that makes our Agile process tangible. Together, they provide a balance of structure with adaptability and provide our team with a clear framework for iterative planning, collaboration and visual task tracking while supporting feedback-driven iteration and continuous improvement [Atlassian, 2025: The Agile Coach](https://www.atlassian.com/agile).
 
-Because our project is being completed within a learning environment with assessment timelines, we adopted some Scrum practices, such as sprint planning, daily stand-ups and retrospectives to create a time boxed rhythm and maintain accountability across deliverables. These activities support communication, shared ownership and reflection while keeping our progress aligned with deadlines. This combined approach aligns with Atlassian’s Agile Coach (2025) guidance that Agile principles can be applied through various frameworks [Atlassian, 2025](https://www.atlassian.com/agile).
+Because our project is being completed within a learning environment with assessment timelines, we adopted some Scrum practices, such as sprint planning, daily stand-ups and retrospectives to create a time boxed rhythm and maintain accountability across deliverables. These activities support communication, shared ownership and reflection while keeping our progress aligned with deadlines. This combined approach aligns with Atlassian’s Agile Coach (2025) guidance that Agile principles can be applied through various frameworks [Atlassian, 2025: Kanban vs. Scrum](https://www.atlassian.com/agile/teams/scrum-kanban-agile).
 
-### *Diagram Figure 1: Kanban Workflow in Practice*
+_Diagram Figure 1: Kanban Workflow in Practice_
 
 ```mermaid
 sequenceDiagram
@@ -47,7 +47,7 @@ We created the following columns to represent each stage of the task status for 
 - **Review and Feedback (QA)** – Peer review, feedback and testing
 - **Done** – Reviewed and completed tasks (kept visible for accountability), linked and pushed to GitHub central repository for version control.
 
-#### *Diagram Figure 2: Trello Kanban Board Structure (Phase 1 Baseline)*
+_Diagram Figure 2: Trello Kanban Board Structure (Phase 1 Baseline)_
 
 ```mermaid
 flowchart LR
@@ -76,7 +76,7 @@ flowchart LR
 - **Owner(s):** assigned team member
 - **Attachments/links:** Resources eg. Rubric/Figma/GitHub/PR/Insomnia/Bruno
 
-#### *Diagram Figure 16: Kanban Task Card Structure (MVP Breakdown)*
+_Diagram Figure 16: Kanban Task Card Structure (MVP Breakdown)_
 
 ```mermaid
 classDiagram
@@ -102,7 +102,7 @@ As we approach our daily work and assigned tasks, we kept each other up to date 
 - **Daily stand-ups:** Discuss blockers and updates using card statuses on Slack.
 - **Retrospectives:** Review WIP limits and productivity and refine Trello columns or other requirements as needed.
 
-#### *Diagram Figure 3: Kanban Flow Integrated with Agile Sprint Practices*
+_Diagram Figure 3: Kanban Flow Integrated with Agile Sprint Practices_
 
 ```mermaid
 flowchart TB
@@ -145,16 +145,15 @@ Below are some **examples** of how we use Kanban and how we may adapt our Kanban
 
 **Example Task:** Wireframes Design
 
-| **Column / Stage**         | **Description**            |
-| -------------------------- | -------------------------- |
+| **Column / Stage**         | **Description**                                                                                                                                                                                                              |
+| -------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Backlog**                | Planning discussions for project design and component features for the app idea and vision, including component criteria for pages such as User Profile, Leaderboard, Reel Canon, Search/Filter box, and Grid Cards.         |
-| **Sprint Backlog**         | Task card created for *“Design Wireframes for The Century Screening Room Project”* and assigned to a team member with acceptance criteria defined.                                                                           |
-| **In Progress**            | Task card is moved into *In Progress* once work has begun.                                                                                                                                                                   |
+| **Sprint Backlog**         | Task card created for _“Design Wireframes for The Century Screening Room Project”_ and assigned to a team member with acceptance criteria defined.                                                                           |
+| **In Progress**            | Task card is moved into _In Progress_ once work has begun.                                                                                                                                                                   |
 | **Review / Feedback (QA)** | Feedback provided through Slack messages, Zoom meetings, and screen sharing to ensure Figma designs align with the project’s scope and vision.                                                                               |
 | **Done**                   | Export Figma designs and commit them to the repository for Pull Request (PR) review. The Agile cycle is reiterated if necessary until acceptance criteria and the Definition of Done (DoD) are met and approved by the team. |
 
-
-#### *Diagram Figure 4: Kanban Flow Example - Wireframes Design Task*
+_Diagram Figure 4: Kanban Flow Example - Wireframes Design Task_
 
 ```mermaid
 sequenceDiagram
@@ -177,3 +176,15 @@ sequenceDiagram
 ### Example of our Trello Board Snapshot
 
 ![Kanban Board](/Trello-board-screenshot.png)
+
+---
+
+## References
+
+- Atlassian: [Kanban (Agile Coach)](https://www.atlassian.com/agile/kanban)
+
+- Atlassian: [Kanban vs. Scrum](https://www.atlassian.com/agile/teams/scrum-kanban-agile)
+
+- Atlassian: [4 Kanban Principles for Agile Project Management](https://www.atlassian.com/agile/project-management/kanban-principles)
+
+- Atlassian: [Kanban 101: How any team can be more agile](https://www.atlassian.com/blog/it-teams/kanban-101)
