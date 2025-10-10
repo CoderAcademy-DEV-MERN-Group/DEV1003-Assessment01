@@ -1,147 +1,113 @@
 # User Stories
 
-## Personas (Wants/Stories)
+This documentation outlines the user stories for four key personas and the core features that address their needs for *The Century Screening Room* application.
 
-### 1. The Competitor
-
-- **Persona:**
-
-  - A competitive person who loves movies.
-  - Wants to climb leaderboards and compare scores with others.
-  - Uses the Reel Leaders leaderboard, Reel Score and even Custom Lists as new challenges to complete for a higher score.
-
-- **Leaderboard Motivation:**
-
-  - As a Competitor, I want to see where I rank on the Reel Leaders leaderboard, so that I can measure my progress against other movie fans.
-
-- **Genre-Based Challenges:**
-
-  - As a Competitor, I want to filter leaderboards by genre, so that I can challenge myself in specific categories I enjoy or want to improve in.
-
-- **Reel Score Tracking:**
-  - As a Competitor, I want my Reel Score to update automatically as I watch and rate movies, so that I feel rewarded for every step of progress.
+Each persona represents a unique user type whose goals shape our MVP feature set and guide our Agile planning process. These stories form the foundation for future sprints, where they’ll evolve into detailed epics, acceptance criteria, and test cases aligned with MERN full-stack development.
 
 ---
 
-### 2. The Collector
+## Persona 1: The Competitor
 
-- **Persona:**
+- A competitive person who loves movies and thrives in competitions
+- Wants to track achievements and see their progress
+- Wants to climb leaderboards and compare scores with others
+- Wants to take on new personalised challenges
 
-  - A completionist who wants to conquer the 100 movies of the Reel Canon.
-  - Finds satisfaction in visually “scratching off” and collecting every title.
+### User Stories: The Competitor
+
+- **Leaderboard Motivation:**
+  > As a Competitor, I want to see where I rank on the Reel Leaders leaderboard, so that I can measure my progress against other movie fans.
+
+- **Genre-Based Challenges:**
+  > As a Competitor, I want to filter leaderboards by genre, so that I can challenge myself in specific categories I enjoy or want to improve in.
+
+- **Reel Score Tracking:**
+  > As a Competitor, I want my Reel Score to update automatically as I watch and rate movies, so that I feel rewarded for every step of progress.
+
+---
+
+## Persona 2: The Collector
+
+- A completionist who wants to conquer the 100 movies of the Reel Canon.
+- Finds satisfaction in visually “scratching off” and collecting every title.
+
+### User Stories: The Collector
 
 - **Scratch-Off Progress:**
 
-  - As a Collector, I want to scratch off movies from the Reel Canon, so that I can visually track my progress toward completing the full list of 100 films.
+  > As a Collector, I want to scratch off movies from the Reel Canon, so that I can visually track my progress toward completing the full list of 100 films.
 
 - **Rating as a Milestone:**
 
-  - As a Collector, I want to rate each movie as I scratch it off, so that I can reflect on my personal journey through the Canon.
+  > As a Collector, I want to rate each movie as I scratch it off, so that I can reflect on my personal journey through the Canon.
 
 - **Completion Satisfaction:**
-  - As a Collector, I want to see my Popcorn Box Meter fill up, so that I get a clear sense of achievement as I approach 100% completion.
+  > As a Collector, I want to see my Popcorn Box Meter fill up, so that I get a clear sense of achievement as I approach 100% completion.
 
 ---
 
-### 3. The Social Planner
+## Persona 3: The Social Planner
 
-- **Persona:**
+- The one who organises movie nights with friends or family.
+- Wants to find recommendations based on shared viewing history.
+- Relies on the friends system and Reel Comparisons to suggest the next group watch.
 
-  - The one who organises movie nights with friends or family.
-  - Wants to find recommendations based on shared viewing history.
-  - Relies on the friends system and Reel Comparisons to suggest the next group watch.
+### User Stories: The Social Planner
 
 - **Friend Comparisons:**
 
-  - As a Social Planner, I want to compare my movie list with my friends, so that I can find films we’ve all watched or ones we’re both missing.
+  > As a Social Planner, I want to compare my movie list with my friends, so that I can find films we have all watched or ones we are missing.
 
-- **Smart Recommendations:**
+- **Suggest Unseen Movies:**
 
-  - As a Social Planner, I want the app to suggest movies that neither of us has seen, so that I can easily pick the next movie night choice.
+  > As a Social Planner, I want the app to suggest movies that neither of us has seen, so that I can easily pick the next movie night choice.
 
 - **Shared Events:**
-  - As a Social Planner, I want to invite friends through the platform, so that planning group movie sessions feels connected and fun.
+  > As a Social Planner, I want to invite friends through the platform, so that planning group movie sessions feels connected and fun.
 
 ---
 
-### 4. The Curator
+## Persona 4: The Curator
 
-- **Persona:**
+- A knowledgeable movie lover who enjoys guiding friends toward great films.
+- Wants to create and share Custom Lists (eg., “Top 10 Thrillers” or “Best Movies for a Girls Night”).
+- Uses the platform to help others discover new favourites, not just to show off expertise.
 
-  - A knowledgeable movie lover who enjoys guiding friends toward great films.
-  - Wants to create and share Custom Lists (eg., “Top 10 Thrillers” or “Best Movies for a Girls Night”).
-  - Uses the platform to help others discover new favorites, not just to show off expertise.
+### User Stories: The Curator
 
 - **List Creation:**
-
-  - As a Curator, I want to create custom lists of movies (eg “Top 10 Thrillers”), so that I can share my taste with others.
+  > As a Curator, I want to create custom lists of movies (eg “Top 10 Thrillers”), so that I can share my taste with others.
 
 - **List Sharing:**
-
-  - As a Curator, I want to publish my custom lists for friends to explore, so that they can discover films I think are worth watching.
+  > As a Curator, I want to publish my custom lists for friends to explore, so that they can discover films I think are worth watching.
 
 - **Discovery Through Curation:**
-  - As a Curator, I want to see how others interact with my lists, so that I know I’m helping people discover new favorites.
+  > As a Curator, I want to see how others interact with my lists, so that I know I’m helping people discover new favourites.
 
 ---
 
-## Epics and User Stories (Goals/Stories)
+## Summary for Future Development Planning
 
-### Epic #1: Competition and Leaderboards
+The following high-level examples outline feature areas derived from the user stories above. These will guide sprint planning and backlog creation in future Agile phases, where each feature may evolve into detailed epics, acceptance criteria, and tasks.
 
-- **Persona**: The "Competitor"
-- **Goal:** Motivate competitive users by comparing thei leaderboards scores and progress.
-- **User Stories:**
-  - As a Competitor, I want to view my ranking on the Reel Leaders leaderboard, so that I can measure my progress against others.
-  - As a Competitor, I want to filter leaderboards by genre, so that I can challenge myself in specific areas.
-  - As a Competitor, I want my Reel Score to update automatically when I complete or rate a movie, so that I feel rewarded instantly.
+Future documentation will expand on database design, endpoint mapping, and user-interface components aligned with the MERN stack. These feature areas will inform the next iteration of our Agile sprint backlog, connecting user needs to technical implementation in the MERN application.
 
----
 
-### Epic #2: Movie Progress and Watched Completion
-
-- **Persona:** The "Collector"
-- **Goal:** Help users track, rate and complete the Century Screening Room **Movie Canon.**
-- **User Stories:**
-  - As a Collector, I want to scratch off movies from the Movie Canon, so that I can visually track my progress.
-  - As a Collector, I want to rate each movie I complete, so that I can reflect on my personal journey through the canon.
-  - As a Collector, I want to see my “Popcorn Meter” fill up as I progress, so that I feel a sense of achievement.
+| **Epic / Theme**                  | **Linked Feature / Module** | **Linked Persona** | **Goal / Outcome**                                                                                                   |
+| --------------------------------- | --------------------------- | ------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| **Competition and Leaderboards**  | *Reel Leaders*              | The Competitor     | Enable competitive users to compare Reel Scores and rankings filtered by genre.                                      |
+| **Movie Progress and Completion** | *Reel Canon*                | The Collector      | Help users track, rate, and visually complete *The Reel Canon* through scratch-off interactions and progress meters. |
+| **Social Viewing and Planning**   | *Reel Comparisons*          | The Social Planner | Make it easy for friends to plan and share movie sessions through comparisons and group recommendations.             |
+| **Curated Lists and Discovery**   | *Custom Lists*              | The Curator        | Empower users to create and share custom lists to inspire new discoveries.                                           |
 
 ---
 
-### Epic #3: Social Viewing and Planning
+## References
 
-- **Goal:** Make it easy for groups of friends to plan and share experiences.
-- **User Stories:**
-  - As a Social Planner, I want to compare my movie list with my friends, so that I can find films we’ve all watched or are missing.
-  - As a Social Planner, I want the app to suggest movies that neither of us has seen, so that I can easily choose a movie for the next group night.
-  - As a Social Planner, I want to invite friends to shared events, so that group movie nights are easier to organise.
+- Visual Paradigm: [What is User Story?](https://www.visual-paradigm.com/guide/agile-software-development/what-is-user-story/)
 
----
+- Justinmind: [20 Useful user story examples and best practices](https://www.justinmind.com/blog/examples-user-story-best-practices/)
 
-### Epic #4: Curated Lists and Discovery
+- Roman Pichler: [From Personas to User Stories](https://www.romanpichler.com/blog/personas-epics-user-stories/)
 
-- **Goal:** Enable knowledgeable users to create, share, and promote movie lists.
-- **Persona**: The "Curator"
-- **User Stories:**
-  - As a Curator, I want to create custom lists (eg. “Top 10 Thrillers”), so that I can share my recommendations.
-  - As a Curator, I want to publish lists for others to explore, so that they can discover films I recommend.
-  - As a Curator, I want to see how others interact with my lists, so that I know I’m helping people find new favourites.
-
----
-
-## User Story Mapping Across Phases
-
-| Persona            | User Story / Feature Example                             | Phase Alignment                                                                                                        |
-| ------------------ | -------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| **Collector**      | Scratch-off movies from the Reel Canon to track progress | **Back-End**: CRUD endpoints for movies & progress tracking <br> **Front-End**: UI to visually mark/scratch-off movies |
-| **Collector**      | Rate each movie watched to reflect on progress           | **Back-End**: Ratings schema & API routes <br> **Front-End**: Rating input & display                                   |
-| **Competitor**     | View ranking on Reel Leaders leaderboard                 | **Back-End**: Leaderboard logic, Reel Score updates <br> **Front-End**: Leaderboard display component                  |
-| **Competitor**     | Filter leaderboards by genre for challenges              | **Back-End**: Query/filter endpoints <br> **Front-End**: Leaderboard filter controls                                   |
-| **Social Planner** | Compare movie lists with friends                         | **Front-End**: Friend comparison UI <br> **Back-End**: Shared user data queries                                        |
-| **Social Planner** | Smart recommendations for next group watch               | **Back-End**: Recommendation logic <br> **Front-End**: Suggested movies display                                        |
-| **Social Planner** | Invite friends to shared events                          | **Front-End**: Friend invite & event feature (stretch goal)                                                            |
-| **Curator**        | Create & publish custom movie lists                      | **Back-End**: Custom List schema & endpoints <br> **Front-End**: List builder UI                                       |
-| **Curator**        | Share lists & track interactions                         | **Back-End**: Tracking engagement data <br> **Front-End**: Interaction analytics UI (stretch goal)                     |
-
----
+- Atlassian: [User Stories | Examples and Template](https://www.atlassian.com/agile/project-management/user-stories)
