@@ -10,7 +10,7 @@ Developers use this model to distribute data and features, allowing for quick ex
 sequenceDiagram
   actor User as User
   participant WS as Web Server
-  participant DNS as DNS Server  
+  participant DNS as DNS Server
   User ->> DNS: User Request for Domain
   DNS -->> User: Response of IP Web Server
   User ->> WS: Makes HTTP request to IP
@@ -47,7 +47,7 @@ Client-server communication, in general, occurs through the use of standardised 
 
 Other HTTP verbs which are less often used, or execute advanced tasks are: `HEAD`, `TRACE`, `OPTIONS` and `CONNECT` [(Mozilla Developer Network, 2025)](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview).
 
-Headers are also used to carry metadata such as authentication and authorisation, content type, caching, and any other useful information not necessarily included in the request/response body [(Postman, 2025)](https://blog.postman.com/what-are-http-headers/).
+Headers are also used to carry metadata such as authentication and authorisation, content type, caching, and any other useful information not necessarily included in the request/response body [(Postman, 2023)](https://blog.postman.com/what-are-http-headers/).
 
 Server-side middleware is used to act on requests from the client, and manipulate database records. Responses are then sent back to the client, with additional status codes to indicate the result of the request. Common status codes in our application include:
 
@@ -87,7 +87,7 @@ PATCH /api/progress/456 { isScratched: true }
 DELETE /api/friends/789
 ```
 
-**__**Diagram Figure 3: A typical communication flow in our application (React, Express, Mongoose, MongoDB)**__**
+**\_\_**Diagram Figure 3: A typical communication flow in our application (React, Express, Mongoose, MongoDB)**\_\_**
 
 ```mermaid
 ---
@@ -114,7 +114,7 @@ sequenceDiagram
 
 ## Data Distribution
 
-Data distribution separates data between the client and the server, to optimise performance, scalability, and security [(Zealousys, 2025)](https://www.zealousys.com/blog/client-server-architecture/). Client-side caching allows for rapid access to previously loaded content, while server side data storage allows for robust validation and sanitisation, secure storage of encrypted private data, as well as any complex aggregations and business logic needed to be performed by middleware. A hybrid approach allows for smooth user experience and optimum performance [(Sharma K, 2025)](https://medium.com/@kumud.sharma.0206/server-side-caching-vs-client-side-caching-a-system-design-perspective-cf2ebae73c42).
+Data distribution separates data between the client and the server, to optimise performance, scalability, and security [(Zealousys, 2023)](https://www.zealousys.com/blog/client-server-architecture/). Client-side caching allows for rapid access to previously loaded content, while server side data storage allows for robust validation and sanitisation, secure storage of encrypted private data, as well as any complex aggregations and business logic needed to be performed by middleware. A hybrid approach allows for smooth user experience and optimum performance [(Sharma K, 2025)](https://medium.com/@kumud.sharma.0206/server-side-caching-vs-client-side-caching-a-system-design-perspective-cf2ebae73c42).
 
 In general data distribution looks like:
 
@@ -201,7 +201,7 @@ graph TD
 - **Client:** JWT Tokens held for access authorisation, movie metadata stored for faster loading, UI states stored (EG. `isWatched()` is user dependent), UI presentation data is stored
 - **Server:** Hashed credentials are stored for increased security, ReelProgress is stored to be used for aggregate functions and leaderboards, friend relationships are stored due to being directly connected to Users and to Comparison lists, cached external API data is stored to ensure faster loads to users of our application
 
-Note: Authentication/authorisation in our application uses client-side JWT storage for efficient development, with plans to implement more secure httpOnly cookies for production deployment [(Matharu M, 2025)](https://meenumatharu.medium.com/when-not-to-use-local-storage-risks-examples-and-secure-alternatives-de541fed56d2).
+Note: Authentication/authorisation in our application uses client-side JWT storage for efficient development, with plans to implement more secure httpOnly cookies for production deployment [(Matharu M, 2024)](https://meenumatharu.medium.com/when-not-to-use-local-storage-risks-examples-and-secure-alternatives-de541fed56d2).
 
 ---
 
@@ -307,11 +307,11 @@ Note: `Mongoose` provides application-level schema validation, future developmen
 | Das, S. (2025). _Client-Server Communication: A Deep Dive_. LinkedIn. Available at: <https://www.linkedin.com/pulse/client-server-communication-deep-dive-sandip-das-zljcc/> (Accessed: 29 Sep. 2025)                                                            |
 | Mozilla Developer Network. (2025). _Client-Server Overview_. MDN Web Docs. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Client-Server_overview> (Accessed: 29 Sep. 2025)                     |
 | Postman. (2023). _What are HTTP headers?_. Postman Blog. Available at: <https://blog.postman.com/what-are-http-headers/> (Accessed: 29 Sep. 2025)                                                                                                                |
-| Zealousys. (2024). _Client-Server Architecture_. Zealousys Blog. Available at: <https://www.zealousys.com/blog/client-server-architecture/> (Accessed: 30 Sep. 2025)                                                                                             |
+| Zealousys. (2023). _Client-Server Architecture_. Zealousys Blog. Available at: <https://www.zealousys.com/blog/client-server-architecture/> (Accessed: 30 Sep. 2025)                                                                                             |
 | Sharma, K. (2025). _Server-Side Caching vs Client-Side Caching_. Medium. Available at: <https://medium.com/@kumud.sharma.0206/server-side-caching-vs-client-side-caching-a-system-design-perspective-cf2ebae73c42> (Accessed: 29 Sep. 2025)                      |
 | Amazon (2025). _HTTP vs HTTPS_ - Difference Between Transfer Protocols - AWS. Amazon Web Services, Inc. Available at: <https://aws.amazon.com/compare/the-difference-between-https-and-http/> (Accessed 3 Oct. 2025)                                             |
 | Das, A. (2025). _6 Ways to Prevent MongoDB Injection Attacks_. Medium. Available at: <https://systemweakness.com/6-ways-to-prevent-mongodb-injection-attacks-7e9021040c12> (Accessed 3 Oct. 2025)                                                                |
 | GeeksforGeeks. (2025). _Server-side Caching and Client-side Caching_. Available at: <https://www.geeksforgeeks.org/system-design/server-side-caching-and-client-side-caching/#what-is-clientside-caching> (Accessed: 19 Sep. 2025)                               |
-| Matharu, M. (2025). _When Not to Use Local Storage: Risks, Examples and Secure Alternatives_. Medium. Available at: <https://meenumatharu.medium.com/when-not-to-use-local-storage-risks-examples-and-secure-alternatives-de541fed56d2> (Accessed: 30 Sep. 2025) |
+| Matharu, M. (2024). _When Not to Use Local Storage: Risks, Examples and Secure Alternatives_. Medium. Available at: <https://meenumatharu.medium.com/when-not-to-use-local-storage-risks-examples-and-secure-alternatives-de541fed56d2> (Accessed: 30 Sep. 2025) |
 | Mozilla Developer Network. (2025). _Form validation_. MDN Web Docs. Available at: <https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Forms/Form_validation> (Accessed: 19 Sep. 2025)                                                     |
 | Kumar, V. (2024). _Mongoose_. Dev.to. Available at: <https://dev.to/vjygour/mongoose-31jc> (Accessed: 30 Sep. 2025)                                                                                                                                              |
