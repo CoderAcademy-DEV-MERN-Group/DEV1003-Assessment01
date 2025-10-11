@@ -4,7 +4,7 @@ This section explains the Software Development Methodologies and how we plan to 
 
 During the planning phase, we considered our project scope, team size and the need for flexibility across the lifecycle. Although we looked at Scrum, we decided that the dedicated roles (eg. Product Owner/Scrum Master) wasn't practical for a team of our size. Instead, we decided responsibilities are shared where every team member contributes to backlog refinement, stand-ups, sprint planning and retrospectives.
 
-By combining both Agile for project management with Kanban for task management, this provided us with a balance of structure and flexibility. Agile guides our sprints and retrospectives, while Kanban provides the visual workflow framework that supports those Agile practices.
+By combining both Agile for project management with Kanban for task management, this provided us with a balance of structure and flexibility. Agile guides our sprints and retrospectives, while Kanban provides the visual workflow framework that supports those Agile practices [(Radigan D, 2025)](https://www.atlassian.com/agile/kanban).
 
 Together, these methodologies give us a structured yet adaptable workflow that can evolve across all three phases of the project lifecycle.
 
@@ -12,11 +12,13 @@ Together, these methodologies give us a structured yet adaptable workflow that c
 
 ## Agile Project Management Methodology
 
-Agile is an iterative and incremental project management methodology that focuses on delivering value in short, manageable cycles rather than through a single, rigid plan. Its core philosophy emphasises adaptability, collaboration, transparency, and continuous improvement (Atlassian, 2024). Instead of completing all planning upfront, Agile encourages teams to work in small sprints, gather feedback, and refine their approach as requirements evolve.
+Agile is an iterative and incremental project management methodology that focuses on delivering value in short, manageable cycles rather than through a single, rigid plan. Its core philosophy emphasises adaptability, collaboration, transparency, and continuous improvement [(Drumond C, 2025)](https://www.atlassian.com/agile/project-management).
 
-By prioritising working outcomes over extensive documentation and responding to change over following a fixed plan, Agile enables teams to stay flexible and maintain momentum even in complex or uncertain projects. Practices such as daily stand-ups, sprint reviews, and retrospectives ensure constant communication, while backlog refinement and prioritisation help keep the team aligned on the most valuable tasks.
+Instead of completing all planning upfront, Agile encourages teams to work in small sprints, gather feedback, and refine their approach as requirements evolve [(Atlassian, 2025)](https://www.atlassian.com/agile).
 
-For our MERN full-stack project, Agile is particularly effective because it supports:
+By prioritising working outcomes over extensive documentation and responding to change over following a fixed plan, Agile enables teams to stay flexible and maintain momentum even in complex or uncertain projects. Practices such as daily stand-ups, sprint reviews, and retrospectives ensure constant communication, while backlog refinement and prioritisation help keep the team aligned on the most valuable tasks [(Atlassian, 2025)](https://www.atlassian.com/agile).
+
+**For our MERN full-stack project, Agile is particularly effective because it supports:**
 
 - A small team structure (group of 3) where roles are shared and collaboration is key.
 - An iterative workflow, where we can start with core MVP features and expand in later phases.
@@ -25,7 +27,7 @@ For our MERN full-stack project, Agile is particularly effective because it supp
 
 ---
 
-_Diagram Figure 1: Agile Methodology Cycle (iteration, feedback, improvement)_
+**_Diagram Figure 1: Agile Methodology Cycle (iteration, feedback, improvement)_**
 
 ```mermaid
 flowchart LR
@@ -45,7 +47,7 @@ flowchart LR
 
 ---
 
-_Diagram Figure 2: Agile & Kanban Adaptation Example Across Phases 1 (Planning & Design), 2 (Back-End Development) & 3 (Front-End Development)_
+**_Diagram Figure 2: Agile & Kanban Adaptation Example Across Phases 1 (Planning & Design), 2 (Back-End Development) & 3 (Front-End Development)_**
 
 ```mermaid
 flowchart TB
@@ -87,33 +89,44 @@ flowchart TB
 
 ## Agile Core Principles We Apply
 
-- **Short development cycles (sprints):** Work is delivered in small, manageable increments each week, allowing us to demonstrate progress regularly and adjust quickly if priorities shift.
+- **Short development cycles (sprints):**
+    - Work is delivered in small, manageable increments each week, allowing us to demonstrate progress regularly and adjust quickly if priorities shift.
 
-- **Continuous feedback and reflection:** Daily stand-ups, sprint reviews, and retrospectives create a loop of constant improvement, ensuring issues are caught early and lessons are applied in the next cycle.
+- **Continuous feedback and reflection:**
+    - Daily stand-ups, sprint reviews, and retrospectives create a loop of constant improvement, ensuring issues are caught early and lessons are applied in the next cycle.
 
-- **Adaptability to change:** Agile values flexibility over rigid planning, which means we can respond to evolving requirements, feedback, or blockers without derailing the entire project.
+- **Adaptability to change:**
+    - Agile values flexibility over rigid planning, which means we can respond to evolving requirements, feedback, or blockers without derailing the entire project.
 
-- **Collaboration and transparency:** Open communication and shared visibility (via Trello, Slack and GitHub) keep all team members aligned, accountable and empowered to contribute equally.
+- **Collaboration and transparency:**
+    - Open communication and shared visibility (via Trello, Slack and GitHub) keep all team members aligned, accountable and empowered to contribute equally.
 
-## Implementation of Agile Practices
-
-Working in an Agile approach helps us maintain progress while adapting to changes. It fits our small team and evolving scope by enabling short feedback loops and continuous improvement.
-
-Implementation plan of Agile practices include:
-
-- **Sprints:** Weekly cycles delivering incremental outcomes aligned with MVP requirements.
-- **Daily Stand-ups** (Slack): Quick posts covering yesterday’s work, today’s plan, and low/high priority blockers. High-priority blockers are flagged in Trello and raised in stand-ups to highlight risks early, allowing the team to make decisions to re-prioritise if needed.
-- **Sprint Planning:** At the start of each sprint, we estimate tasks load, prioritise tasks, assign ownership and define acceptance criteria.
-- **Retrospectives:** End of each sprint reviews to evaluate what worked and what needs adjustment. We reflect on successes, challenges and improvements.
-- **Definition of Done (DoD):** Each task card requires acceptance criteria and peer review before moving to “Done”, with relevant docs/tests updated.
-- **Task Prioritisation:** Dependencies and MVP-aligned tasks prioritised and addressed.
-- **Backlog Hygiene:** Regular refinement of epics/stories, keeping scope realistic.
-- **Pipeline management:** Regular review against projection of keeping on track with our roadmap timeline throughout the project.
-- **Continuous Integration:** Our GitHub workflow (feature branches, PRs, peer reviews, CI checks) ensures quality and aligns with Agile’s principle of continuous delivery.
+[(Atlassian, 2025)](https://www.atlassian.com/agile); [(Drumond C, 2025)](https://www.atlassian.com/agile/project-management)
 
 ---
 
-_Diagram Figure 3: Continuous Integration Flow_
+### Implementation of Agile Practices
+
+Working in an Agile approach helps us maintain progress while adapting to changes. It fits our small team and evolving scope by enabling short feedback loops and continuous improvement.
+[(Drumond C, 2025)](https://www.atlassian.com/agile/project-management)
+
+Implementation plan of Agile practices include:
+
+| **Agile Practice**           | **Implementation Description**                                                                                                                                                                                      |
+| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Sprints**                  | Weekly cycles delivering incremental outcomes aligned with MVP requirements.                                                                                                                                        |
+| **Daily Stand-ups (Slack)**  | Quick posts covering yesterday’s work, today’s plan, and any blockers. High-priority blockers are flagged in Trello and raised in stand-ups to highlight risks early, allowing the team to re-prioritise if needed. |
+| **Sprint Planning**          | At the start of each sprint, we estimate workload, prioritise tasks, assign ownership, and define acceptance criteria.                                                                                              |
+| **Retrospectives**           | End-of-sprint reviews to reflect on what worked, challenges faced, and what to improve for the next cycle.                                                                                                          |
+| **Definition of Done (DoD)** | Each user story/task card must include acceptance criteria and be peer-reviewed before moving to “Done”. Relevant documentation and tests are updated.                                                                         |
+| **Task Prioritisation**      | Dependencies and MVP-aligned tasks are prioritised and addressed first to ensure critical path progress.                                                                                                            |
+| **Backlog Hygiene**          | Regular refinement of epics and stories keeps the scope realistic and focused.                                                                                                                                      |
+| **Pipeline Management**      | Continuous review of progress against roadmap projections ensures the team stays on track with overall project milestones.                                                                                          |
+| **Continuous Integration**   | Our GitHub workflow (feature branches, PRs, peer reviews, CI checks) supports Agile principles of continuous delivery and code quality.                                                                             |
+
+---
+
+**_Diagram Figure 3: Continuous Integration Flow_**
 
 ```mermaid
 flowchart LR
@@ -142,9 +155,11 @@ flowchart LR
 
 ## How Agile and Kanban Integrate
 
-Agile gives us the cadence (sprints, planning, retrospectives). Kanban (in Trello) provides the visual flow to execute those practices day-to-day.
+- Agile gives us the cadence (sprints, planning, retrospectives). [(Radigan D, 2025)](https://www.atlassian.com/agile/kanban)
 
-_Diagram Figure 4: Agile & Kanban Methodology Core Principles_
+- Kanban (in Trello) provides the visual flow to execute those practices day-to-day. [(MiroBlog, 2025)](https://miro.com/blog/scrum-kanban-boards-differences)
+
+**_Diagram Figure 4: Agile & Kanban Methodology Core Principles_**
 
 ```mermaid
 flowchart TB
@@ -184,7 +199,7 @@ flowchart TB
 
 We adopted Agile as our overarching methodology because it was suitable for our team size working on a full-stack project that would require flexibility and regular adjustments.
 
-_Diagram Figure 5: Gantt Project Roadmap - Phases 1, 2 & 3_
+**_Diagram Figure 5: Gantt Project Roadmap - Phases 1, 2 & 3_**
 
 ```mermaid
 gantt
@@ -212,7 +227,7 @@ gantt
 - **Sprint goals:** Software architecture and paradigms, methodology, ERDs, wireframes, initial backlog and Definition of Done (DoD).
 - **Retrospective focus:** clarity of scope, rubric alignment, task progress update on team alignments, estimation to manage tasks/workload/prioritisation and timeline projections.
 
-_Diagram Figure 6: Gantt Project Roadmap - Phase 1 Planning_
+**_Diagram Figure 6: Gantt Project Roadmap - Phase 1 Planning_**
 
 ```mermaid
 gantt
@@ -237,7 +252,7 @@ gantt
 - **Sprint goals:** CRUD endpoints, validation, error handling, seed data, API docs.
 - **Retrospective focus:** code quality, debugging and testing coverage, PR review quality, CI checks.
 
-_Diagram Figure 7: Gantt Project Roadmap - Phase 2 Back-End Development_
+**_Diagram Figure 7: Gantt Project Roadmap - Phase 2 Back-End Development_**
 
 ```mermaid
 gantt
@@ -259,7 +274,7 @@ gantt
 - **Retrospective focus:** usability feedback, user testing, integration issues, ensure responsiveness and accessibility, polish.
 - In Phase 3, we could plan to extend Agile feedback loops beyond retrospectives by incorporating user testing sessions, feeding these insights back into backlog refinement
 
-_Diagram Figure 8: Gantt Project Roadmap - Phase 3 Front-End Development_
+**_Diagram Figure 8: Gantt Project Roadmap - Phase 3 Front-End Development_**
 
 ```mermaid
 gantt
@@ -290,7 +305,7 @@ gantt
 4. Closed sprint with a retrospective and adjusted for the next cycle.
 5. Repeated the cycle of planning → implementing → reviewing → reflecting.
 
-_Diagram Figure 9: Sprint Planning - Sprint Cycle Week_
+**_Diagram Figure 9: Sprint Planning - Sprint Cycle Week_**
 
 ```mermaid
 flowchart LR
@@ -346,7 +361,7 @@ flowchart LR
 - **Retrospective:**
   - In the sprint retrospective, we noted that defining acceptance criteria at the start made peer review smoother and reduced rework.
 
-_Diagram Figure 10: Agile & Kanban Workflow for Wireframe Design (Planning Phase)_
+**_Diagram Figure 10: Agile & Kanban Workflow for Wireframe Design (Planning Phase)_**
 
 ```mermaid
 sequenceDiagram
@@ -373,22 +388,26 @@ sequenceDiagram
 
 - **Sprint Planning:**
   - The team will set sprint goals for full CRUD functionality in a controller
+
 - **Kanban Workflow:**
   - The card moved from Backlog → Sprint Backlog → In Progress.
   - Daily Slack stand-up update example: “Yesterday I scaffolded the controller and model, today I’ll add validation logic and write initial tests. No blockers so far.”
+
 - **Review and Feedback (QA):**
   - Once the code is pushed to a feature branch, a Pull Request is opened to review on GitHub
   - Peer review checked for clarity, naming conventions and testing coverage
+
 - **Definition of Done (DoD):**
   - Endpoint passed local testing via Insomnia/Bruno
   - PR approved and merged into the main branch
   - Update API documentation with example request/response
   - Card moved to Done after all acceptance criteria met
+
 - **Retrospective:**
   - Once code is working, we will review and apply DRY principles
   - We will examine what can be re-used in other CRUD functionality to streamline development
 
-_Diagram Figure 11: Agile & Kanban Workflow for CRUD Endpoint Development (Back-End Phase)_
+**_Diagram Figure 11: Agile & Kanban Workflow for CRUD Endpoint Development (Back-End Phase)_**
 
 ```mermaid
     sequenceDiagram
@@ -438,7 +457,7 @@ _Diagram Figure 11: Agile & Kanban Workflow for CRUD Endpoint Development (Back-
 - **Retrospective:**
   - Future Example: Discussion about breakpoints criteria to adopt for future responsive components.
 
-_Diagram Figure 12: Agile & Kanban Flow for Front-End Component Development (Movie Card Example)_
+**_Diagram Figure 12: Agile & Kanban Flow for Front-End Component Development (Movie Card Example)_**
 
 ```mermaid
 flowchart TB
@@ -463,10 +482,9 @@ flowchart TB
 
 ## References
 
-| Source                                                                                               | Purpose                                                                                                          |
-| ---------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [Atlassian: What is Agile Project Management](https://www.atlassian.com/agile/project-management)    | Detailed overview and guidance on Agile Project Management                                                       |
-| [Atlassian: Agile Coach](https://www.atlassian.com/agile)                                            | Agile principles, sprints, stand-ups and guide to align our approach with industry standards and best practices. |
-| [Atlassian: Kanban Principles](https://www.atlassian.com/agile/project-management/kanban-principles) | Explains the core Kanban principles and supporting practices                                                     |
-| [Miro Blog: Scrum vs. Kanban Boards](https://miro.com/blog/scrum-kanban-boards-differences)          | Comparison of Scrum vs Kanban boards                                                                             |
-| [Trello Guide](https://trello.com/guide)                                                             | Trello documentation for setting up and optimising Kanban board setup.                                           |
+References                                                                                                                                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Atlassian (2025). _What is Agile?_. Atlassian. Available at: <https://www.atlassian.com/agile> (Accessed 23 Sep. 2025).                        |
+| Drumond, C. (2025). _What is Agile Project Management?_. Atlassian. Available at: <https://www.atlassian.com/agile/project-management> (Accessed 23 Sep. 2025).                        |
+| Radigan, D. (2025). _Kanban A Brief Introduction_. Atlassian. Available at: <https://www.atlassian.com/agile/kanban> (Accessed 23 Sep. 2025).                                                  |
+| MiroBlog. (2025). _Kanban vs. Scrum boards: 11 differences to help you choose the best tool_. Available at: <https://miro.com/blog/scrum-kanban-boards-differences> (Accessed 23 Sep. 2025).                        |
