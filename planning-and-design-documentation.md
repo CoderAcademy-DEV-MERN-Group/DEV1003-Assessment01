@@ -5,7 +5,7 @@
 1. [Programming Paradigm](#programming-paradigm)
 2. [Software Architecture Pattern](#software-architecture-pattern)
 3. [Software Development Methodologies](#software-development-methodologies)
-4. [Kanban Task Management Methodology](#kanban-task-management-methodology)
+4. [Task Management Methodology](#task-management-methodology)
 5. [Client Server Architecture](#client-server-architecture)
 6. [Entity Relationship Diagram](#entity-relationship-diagram)
 7. [User Stories](#user-stories)
@@ -142,8 +142,6 @@ note for LoginPage "Encapsulation: hashedPassword, email and username are privat
 note for User "Encapsulation: validatePassword() or resetPassword() public methods allow
     viewing username and email attributes, and setPassword() method access"
 ```
-
-![An image depicting encapsulation of User password data](./src/assets/Encapsulation%20Diagram.png)
 
 An example of this is a user object which has a password as an attribute:
 
@@ -990,7 +988,7 @@ flowchart TB
 
 ---
 
-## Kanban Task Management Methodology
+## Task Management Methodology
 
 We chose Kanban as our Task management Methodology as it provides a visual system for tracking progress, limiting work in progress (WIP), and maintaining a continuous delivery flow. Kanban helps teams visualise workflow, manage priorities, and adapt as requirements change. Work in progress (WIP) limits help maintain focus and prevent overload, while visible progress supports collaboration and shared responsibility across all project phases [(Radigan D, 2025)](https://www.atlassian.com/agile/kanban).
 
